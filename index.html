@@ -143,7 +143,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <div class="container"><h1 style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 1rem; color: #131921;">PlayStation 2 Slim (Renewed)</h1>
 <div class="price-section">
 <div class="renewed-label">Renewed</div>
-<h2>Price: <s>₹6599</s> ₹5500</h2>
+<h2>Price: <s>₹7399</s> ₹6299</h2>
 <div class="accessory">
 <label>Warranty (1st month free, ₹500/month extra):</label>
 <div>
@@ -156,7 +156,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <div class="accessory-section">
 <h3>Cables &amp; TV Connection</h3>
 <div class="category-box">
-<div class="accessory">Power Cable - ₹180 <div><button onclick="changeQty(0, -1)">-</button> <span id="qty-0">0</span> <button onclick="changeQty(0, 1)">+</button></div></div>
+<div class="accessory">Power Adapter with Cable - ₹399 <div><button onclick="changeQty(0, -1)">-</button> <span id="qty-0">0</span> <button onclick="changeQty(0, 1)">+</button></div></div>
 <div class="accessory">AV Cable - ₹190 <div><button onclick="changeQty(1, -1)">-</button> <span id="qty-1">0</span> <button onclick="changeQty(1, 1)">+</button></div></div>
 
 <div class="accessory">HDMI Converter - ₹499 <div><button onclick="changeQty(2, -1)">-</button> <span id="qty-2">0</span> <button onclick="changeQty(2, 1)">+</button></div></div>
@@ -179,7 +179,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <div class="accessory">Wireless Gamepad - ₹720 <div><button onclick="changeQty(11, -1)">-</button> <span id="qty-11">0</span> <button onclick="changeQty(11, 1)">+</button></div></div>
 </div>
 </div>
-<h3 id="summary">Total: ₹5500</h3>
+<h3 id="summary">Total: ₹6299</h3>
 <div style="margin: 30px auto 10px; max-width: 600px; background: #fff; padding: 15px 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
   <h3 style="margin-bottom: 10px; text-align: center; font-size: 18px; color: #131921;">Added Accessories</h3>
   <ul id="accessorySummaryList" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
@@ -212,7 +212,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
   <div><strong>Warranty:</strong> <span id="topWarranty">1 month</span></div>
   <div><strong>Total Items:</strong> <span id="topTotalItems">0</span></div>
   <div><strong>Accessories Total:</strong> ₹<span id="topAccessoriesTotal">0</span></div>
-  <div><strong>Grand Total:</strong> ₹<span id="topGrandTotal">5500</span></div>
+  <div><strong>Grand Total:</strong> ₹<span id="topGrandTotal">6299</span></div>
 </div>
 <div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #fff7e6; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
   <h3 style="text-align: center; margin-bottom: 15px;">Choose Payment Method</h3>
@@ -262,9 +262,9 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
     </div></div>
 
 <script>
-  const basePrice = 5500;
+  const basePrice = 6299;
   let warranty = 1;
-  const prices = [180, 190, 499, 90, 330, 799, 1499, 2799, 2999, 480, 430, 720];
+  const prices = [399, 190, 499, 90, 330, 799, 1499, 2799, 2999, 480, 430, 720];
   let quantities = Array(prices.length).fill(0);
 
   function changeWarranty(val) {
@@ -293,7 +293,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
   }
 
   function updateAccessorySummary() {
-    const names = ["Power Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
+    const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
     const summaryList = document.getElementById('accessorySummaryList');
     const totalItemsSpan = document.getElementById('totalItems');
     summaryList.innerHTML = '';
@@ -335,7 +335,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 
     msg += `%0A*PS2 Order:*%0AConsole: PS2 Slim - ₹${basePrice}%0AWarranty: ${warranty} months - ₹${(warranty - 1) * 500}%0A`;
 
-    const names = ["Power Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
+    const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
     for (let i = 0; i < quantities.length; i++) {
       if (quantities[i] > 0) {
         msg += `${names[i]} x${quantities[i]} - ₹${quantities[i] * prices[i]}%0A`;
@@ -392,7 +392,7 @@ function updateTopSummary() {
   let totalItems = 1;
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   summaryTopList.innerHTML = '';
-  const names = ["Power Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
+  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
 
   const ps2Item = document.createElement('li');
   ps2Item.innerText = "PS2 Slim x1";
@@ -446,7 +446,7 @@ function updateTopSummary() {
 </div>
 </div>
 <div id="totalSticky">
-  Total: ₹<span id="stickyTotal">5500</span>
+  Total: ₹<span id="stickyTotal">6299</span>
 </div>
 
 
