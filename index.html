@@ -145,7 +145,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <div class="renewed-label">Renewed</div>
 <h2>Price: <s>₹7399</s> ₹6299</h2>
 <div class="accessory">
-<label>Warranty (1st month free, ₹500/month extra):</label>
+<label>Warranty (1st month free, ₹300/month extra):</label>
 <div>
 <button onclick="changeWarranty(-1)">-</button>
 <span id="warranty">1</span> month
@@ -256,7 +256,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <div style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #ccc; font-size: 15px; line-height: 1.8; color: #333;">
 <strong>Warranty Information:</strong><br/>
     • <strong>PS2 Console:</strong> Minimum 1-month warranty included.<br/>
-    • <strong>Additional Warranty:</strong> ₹500 per additional month.<br/>
+    • <strong>Additional Warranty:</strong> ₹300 per additional month.<br/>
     • <strong>Accessories:</strong> Testing warranty only.<br/>
     • <strong>USB Drives:</strong> 6 months warranty.
     </div></div>
@@ -283,7 +283,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
   }
 
   function updateTotal() {
-    let total = basePrice + (warranty - 1) * 500;
+    let total = basePrice + (warranty - 1) * 300;
     for (let i = 0; i < prices.length; i++) {
       total += quantities[i] * prices[i];
     }
@@ -333,7 +333,7 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
       msg += key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ') + ': ' + val + '%0A';
     });
 
-    msg += `%0A*PS2 Order:*%0AConsole: PS2 Slim - ₹${basePrice}%0AWarranty: ${warranty} months - ₹${(warranty - 1) * 500}%0A`;
+    msg += `%0A*PS2 Order:*%0AConsole: PS2 Slim - ₹${basePrice}%0AWarranty: ${warranty} months - ₹${(warranty - 1) * 300}%0A`;
 
     const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card", "Wired Gamepad", "Wireless Gamepad"];
     for (let i = 0; i < quantities.length; i++) {
@@ -367,7 +367,7 @@ function togglePaymentMode() {
 
 function updateUpiLink(id) {
   const isCOD = document.querySelector('input[name="paymentMode"]:checked').value === 'cod';
-  let totalAmount = basePrice + (warranty - 1) * 500;
+  let totalAmount = basePrice + (warranty - 1) * 300;
   for (let i = 0; i < prices.length; i++) totalAmount += quantities[i] * prices[i];
 
   if (isCOD) {
@@ -412,7 +412,7 @@ function updateTopSummary() {
   document.getElementById('topTotalItems').innerText = totalItems;
   document.getElementById('topAccessoriesTotal').innerText = accessoriesTotal;
 
-  let grandTotal = basePrice + (warranty - 1) * 500 + accessoriesTotal;
+  let grandTotal = basePrice + (warranty - 1) * 300 + accessoriesTotal;
   document.getElementById('topGrandTotal').innerText = grandTotal;
 }
 </script>
