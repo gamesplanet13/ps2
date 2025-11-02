@@ -221,8 +221,8 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
     <label><input type="radio" name="paymentMode" value="cod" onchange="togglePaymentMode()"> Cash on Delivery</label>
   </div>
   <div id="codDetails" style="display:none; font-size: 14px; color: #333; line-height: 1.6;">
-    <p><strong>Courier Charges:</strong> ₹400 (added)</p>
-    <p><strong>Advance to Pay Now (20%):</strong> ₹<span id="codAdvance">0</span></p>
+    <p><strong>Courier Charges:</strong> ₹600 (added)</p>
+    <p><strong>Advance to Pay Now (10%):</strong> ₹<span id="codAdvance">0</span></p>
     <p><strong>Amount to Pay on Delivery:</strong> ₹<span id="codDue">0</span></p>
   </div>
 </div>
@@ -257,14 +257,14 @@ body { padding-bottom: 60px; } /* enough space for 4 buttons */
 <strong>Warranty Information:</strong><br/>
     • <strong>PS2 Console:</strong> Minimum 1-month warranty included.<br/>
     • <strong>Additional Warranty:</strong> ₹300 per additional month.<br/>
-    • <strong>Accessories:</strong> Testing warranty only.<br/>
-    • <strong>USB Drives:</strong> 6 months warranty.
+    • <strong>Accessories:</strong> 1-Day Testing warranty only.<br/>
+    • <strong>USB Drives:</strong> 6-months warranty.
     </div></div>
 
 <script>
   const basePrice = 6299;
   let warranty = 1;
-  const prices = [399, 190, 499, 90, 330, 799, 1499, 2799, 2999, 499, 465, 720];
+  const prices = [459, 190, 499, 90, 330, 799, 1499, 2999, 3599, 599, 465, 740];
   let quantities = Array(prices.length).fill(0);
 
   function changeWarranty(val) {
