@@ -139,20 +139,24 @@ body { padding-bottom: 160px; }
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<header><a href="https://www.gamesplanet.co.in" target="_blank" style="color: white; text-decoration: none; font-weight: bold; font-family: sans-serif;">GAMES PLANET</a></header>
+<header><a href="https://www.gamesplanet.shop" target="_blank" style="color: white; text-decoration: none; font-weight: bold; font-family: sans-serif;">GAMES PLANET</a></header>
 <div class="container"><h1 style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 1rem; color: #131921;">PlayStation 2 Slim (Renewed)</h1>
 <div class="price-section">
 <div class="renewed-label">Renewed</div>
 
 <!-- COLOR SELECTOR (patched in) -->
 <label style="font-weight:bold; margin-right:8px;">Choose Colour:</label>
-<select id="ps2Color" onchange="updateTotal()" style="padding:8px; border-radius:6px;">
-  <option value="6299">Black - ₹6299</option>
-  <option value="6799">White - ₹6799</option>
-  <option value="6999">Silver - ₹6999</option>
+<select id="ps2Color" onchange="updateColorDisplay(); updateTotal()" style="padding:8px; border-radius:6px;">
+  <option value="black">Black - ₹6299</option>
+  <option value="white">White - ₹6799</option>
+  <option value="silver">Silver - ₹6999</option>
 </select>
 
-<h2 style="margin-top:10px">Price: <s>₹7399</s> <span id="basePriceDisplay">₹6299</span></h2>
+<h2 style="margin-top:10px">
+  Price: <s id="mrpValue">₹7399</s>
+  <span id="basePriceDisplay">₹6299</span>
+  <span id="discountPercent" style="color:#27ae60;font-weight:bold;">(15% OFF)</span>
+</h2>
 <div class="accessory">
 <label>Warranty (1st month free, ₹300/month extra):</label>
 <div>
@@ -340,6 +344,23 @@ body { padding-bottom: 160px; }
 </footer>
 
 <script>
+    // Color pricing and discount setup
+const colorData = {
+  black: { price: 6299, mrp: 7399 },
+  white: { price: 6799, mrp: 7999 },
+  silver: { price: 6999, mrp: 8249 }
+};
+
+function updateColorDisplay() {
+  const colorSel = document.getElementById('ps2Color').value;
+  const base = colorData[colorSel].price;
+  const mrp = colorData[colorSel].mrp;
+  const discount = Math.round(((mrp - base) / mrp) * 100);
+  document.getElementById('mrpValue').innerText = '₹' + mrp;
+  document.getElementById('basePriceDisplay').innerText = '₹' + base;
+  document.getElementById('discountPercent').innerText = `(${discount}% OFF)`;
+}
+    
   // BASES & PRICES (updated)
   let warranty = 1;
   // prices array matches order of accessory names below
@@ -391,8 +412,8 @@ body { padding-bottom: 160px; }
 
   // compute totals and update UI + UPI links
   function updateTotal() {
-    const colorSelect = document.getElementById('ps2Color');
-    const basePrice = parseInt(colorSelect.value, 10);
+    const colorSel = document.getElementById('ps2Color').value;
+const basePrice = colorData[colorSel].price;
     document.getElementById('basePriceDisplay').innerText = '₹' + basePrice;
 
     let total = basePrice + (warranty - 1) * 300;
@@ -511,16 +532,20 @@ body { padding-bottom: 160px; }
         msg += `${names[i]} x${quantities[i]} - ₹${quantities[i] * prices[i]}%0A`;
       }
     }
+// Add Courier Charges line
+const courierCharge = (isCOD ? 499 : 350);
+msg += `Courier Charges: ₹${courierCharge}%0A`;
 
-    // Total shown to user
-    let totalToShow;
-    const isCOD = document.querySelector('input[name="paymentMode"]:checked').value === 'cod';
-    if (isCOD) {
-      totalToShow = document.getElementById('codAdvance').innerText + ' (advance) + ' + document.getElementById('codDue').innerText + ' (on delivery)';
-    } else {
-      totalToShow = document.getElementById('stickyTotal').innerText;
-    }
-    msg += `%0A*Total: ${totalToShow}*`;
+// Total shown to user
+let totalToShow;
+const isCOD = document.querySelector('input[name="paymentMode"]:checked').value === 'cod';
+if (isCOD) {
+  totalToShow = document.getElementById('codAdvance').innerText + ' (advance) + ' + document.getElementById('codDue').innerText + ' (on delivery)';
+} else {
+  totalToShow = document.getElementById('stickyTotal').innerText;
+}
+msg += `%0A*Total: ${totalToShow}*`;
+
 
     const whatsappURL = `https://wa.me/917983624797?text=${msg}`;
     window.open(whatsappURL, '_blank');
@@ -533,7 +558,8 @@ body { padding-bottom: 160px; }
       if (el) el.innerText = quantities[i];
     }
     // init totals and UPI links
-    updateTotal();
+    updateColorDisplay();
+updateTotal();
   });
 </script>
 
