@@ -1,473 +1,378 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>PS2 Order</title>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #131921;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      font-size: 1.5rem;
-    }
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .price-section {
-      margin-bottom: 20px;
-    }
-    .renewed-label {
-      background: red;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 4px;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .accessory-section h3 {
-      margin-top: 30px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-    .category-box {
-      background-color: #fafafa;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 25px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
-    .accessory {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 8px 0;
-    }
-    button {
-      padding: 5px 10px;
-      background-color: #f0c14b;
-      border: 1px solid #a88734;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #buyNow {
-      background-color: #2ecc71;
-      color: white;
-      font-size: 18px;
-      padding: 15px;
-      border-radius: 8px;
-      border: none;
-      width: 100%;
-      margin-top: 20px;
-    }
-  
-#totalSticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #2ecc71;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
-  text-align: center;
-  z-index: 999;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
-}
-body { padding-bottom: 160px; }
-
-#upiFixed {
-  position: fixed;
-  bottom: 60px;
-  left: 0;
-  width: 100%;
-  background: #6200ea;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px;
-  text-align: center;
-  z-index: 998;
-  text-decoration: none;
-}
-
-.contact-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-.contact-icons a {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.contact-icons a:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-.contact-icons a i {
-  font-size: 20px;
-  color: #555;
-}
-
-.small-note {
-  font-size: 13px;
-  color: #444;
-}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Games Planet — PS2 Slim Order</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071028; --card:#0f1630; --muted:#9fb0d3; --text:#eaf1ff;
+    --accent:#7c4dff; --cta:#3ddc84; --danger:#ff5c5c; --panel:#0b1230;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Arial,sans-serif;
+    background:linear-gradient(180deg,#031026 0%, #071028 50%);
+    color:var(--text);
+    padding:22px;
+  }
+
+  .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:20px}
+  header{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .brand{font-weight:800;font-size:20px}
+  .sub{color:var(--muted);font-size:13px}
+  .hero-note{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);margin-bottom:12px}
+
+  /* left main card */
+  .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02)}
+  .product-row{display:flex;gap:16px;align-items:flex-start}
+  .gallery{width:420px;height:260px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#071028,#0b1330);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .gallery img{max-width:100%;max-height:100%;object-fit:contain}
+  .meta{flex:1}
+
+  .title{font-weight:800;font-size:20px;margin-bottom:6px}
+  .muted{color:var(--muted);font-size:13px;margin-bottom:8px}
+  .price-row{display:flex;align-items:center;gap:12px;margin:10px 0}
+  .mrp{color:rgba(255,255,255,0.5);text-decoration:line-through;font-weight:600}
+  .baseprice{font-weight:900;font-size:22px}
+  .discount{color:#2ecc71;font-weight:700;font-size:13px}
+
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+  select,input[type="number"]{background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:var(--text);padding:8px;border-radius:8px}
+  .small{font-size:13px;color:var(--muted)}
+
+  h3.section-title{margin:18px 0 8px 0;color:var(--muted);font-size:15px}
+
+  .accessory-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .accessory{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+  .qty-controls{display:flex;gap:8px;align-items:center}
+  .qty-controls button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:6px 8px;border-radius:8px;cursor:pointer}
+
+  /* right sticky/order panel */
+  .side{position:relative}
+  .order-box{position:sticky;top:22px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .order-box h3{margin:0 0 8px 0}
+  .summary-line{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+  .big-total{font-weight:900;font-size:20px;color:var(--cta)}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:800;text-decoration:none;color:#07210f;background:var(--cta)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.03)}
+  .btn.yt{background:#ff0000;color:white}
+
+  .upi-buttons{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .upi-buttons a{display:block;padding:10px;border-radius:8px;text-decoration:none;font-weight:800;text-align:center;color:white}
+  .upi-paytm{background:#002970}
+  .upi-gpay{background:#4285F4}
+
+  /* sticky bottom bar */
+  #totalSticky{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(90deg,#0b8f55,#2ecc71);color:#042014;padding:12px 18px;font-weight:800;text-align:center;z-index:999;border-top-left-radius:8px;border-top-right-radius:8px;box-shadow:0 -6px 20px rgba(0,0,0,0.5)}
+  body{padding-bottom:120px}
+
+  /* small responsive */
+  @media (max-width:1100px){ .container{grid-template-columns:1fr; padding-bottom:140px} .gallery{width:100%;height:220px} .product-row{flex-direction:column} .order-box{position:relative} }
+</style>
 </head>
 <body>
-<header><a href="https://www.gamesplanet.shop" target="_blank" style="color: white; text-decoration: none; font-weight: bold; font-family: sans-serif;">GAMES PLANET</a></header>
+
+<header>
+  <div>
+    <div class="brand">GAMES PLANET</div>
+    <div class="sub">PS2 Slim — Renewed • Order Builder</div>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a class="btn ghost" href="https://gamesplanet.shop" target="_blank">Games Planet</a>
+    <a class="btn ghost" href="https://youtube.com/@gamesplanet13" target="_blank">YouTube</a>
+  </div>
+</header>
+
+<div class="hero-note card">
+  Tip: Select the console color → add warranty months and accessories → choose payment mode (Prepaid/COD). Use UPI to pay and then tap <strong>Send Order to WhatsApp</strong> to place the order.
+</div>
 
 <div class="container">
-  <h1 style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 1rem; color: #131921;">PlayStation 2 Slim (Renewed)</h1>
 
-  <div class="price-section">
-    <div class="renewed-label">Renewed</div>
+  <!-- LEFT: product + options -->
+  <main class="card">
+    <div class="product-row">
+      <div class="gallery" id="galleryBox">
+        <!-- Put your product image filename in src or replace with hosted URL -->
+        <img id="productImg" src="Ps2hdmi.png" alt="PS2 Slim">
+      </div>
 
-    <!-- COLOR SELECTOR PATCHED -->
-    <label style="font-weight:bold; margin-right:8px;">Choose Colour:</label>
-    <select id="ps2Color" onchange="updateColorDisplay(); updateTotal()" style="padding:8px; border-radius:6px;">
-      <option value="black">Black - ₹6299</option>
-      <option value="white">White - ₹6799</option>
-      <option value="silver">Silver - ₹6999</option>
-    </select>
+      <div class="meta">
+        <div class="title">PlayStation 2 Slim (Renewed)</div>
+        <div class="muted">Console + Accessories • WhatsApp order • UPI ready</div>
 
-    <h2 style="margin-top:10px">
-      Price: <s id="mrpValue">₹7399</s>
-      <span id="basePriceDisplay">₹6299</span>
-      <span id="discountPercent" style="color:#27ae60;font-weight:bold;">(15% OFF)</span>
-    </h2>
+        <div class="price-row" style="margin-top:12px">
+          <div class="mrp" id="mrpValue">₹7399</div>
+          <div class="baseprice" id="basePriceDisplay">₹6299</div>
+          <div class="discount" id="discountPercent">(15% OFF)</div>
+        </div>
 
-    <div class="accessory">
-      <label>Warranty (1st month free, ₹300/month extra):</label>
-      <div>
-        <button onclick="changeWarranty(-1)">-</button>
-        <span id="warranty">1</span> month
-        <button onclick="changeWarranty(1)">+</button>
+        <div class="controls">
+          <div>
+            <label class="small">Choose Colour</label><br>
+            <select id="ps2Color" onchange="updateColorDisplay(); updateTotal()">
+              <option value="black">Black - ₹6299</option>
+              <option value="white">White - ₹6799</option>
+              <option value="silver">Silver - ₹6999</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="small">Warranty (₹300 / extra month)</label><br>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+              <button class="btn ghost" onclick="changeWarranty(-1)">−</button>
+              <div id="warranty" style="min-width:36px;text-align:center;font-weight:800">1</div>
+              <button class="btn ghost" onclick="changeWarranty(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-title">Cables & TV Connection</h3>
+        <div class="accessory-grid">
+          <div class="accessory">Power Adapter with Cable <div class="qty-controls"><button onclick="changeQty(0,-1)">−</button><span id="qty-0">0</span><button onclick="changeQty(0,1)">+</button></div></div>
+          <div class="accessory">AV Cable <div class="qty-controls"><button onclick="changeQty(1,-1)">−</button><span id="qty-1">0</span><button onclick="changeQty(1,1)">+</button></div></div>
+          <div class="accessory">HDMI Converter <div class="qty-controls"><button onclick="changeQty(2,-1)">−</button><span id="qty-2">0</span><button onclick="changeQty(2,1)">+</button></div></div>
+          <div class="accessory">HDMI Normal 1.5m <div class="qty-controls"><button onclick="changeQty(3,-1)">−</button><span id="qty-3">0</span><button onclick="changeQty(3,1)">+</button></div></div>
+          <div class="accessory">HDMI Best 1.5m <div class="qty-controls"><button onclick="changeQty(4,-1)">−</button><span id="qty-4">0</span><button onclick="changeQty(4,1)">+</button></div></div>
+        </div>
+
+        <h3 class="section-title">Game Drives (USB)</h3>
+        <div class="accessory-grid">
+          <div class="accessory">USB2.0 64GB (21 Games) <div class="qty-controls"><button onclick="changeQty(5,-1)">−</button><span id="qty-5">0</span><button onclick="changeQty(5,1)">+</button></div></div>
+          <div class="accessory">USB3.0 128GB (41 Games) <div class="qty-controls"><button onclick="changeQty(6,-1)">−</button><span id="qty-6">0</span><button onclick="changeQty(6,1)">+</button></div></div>
+          <div class="accessory">USB3.0 256GB SSD (71 Games) <div class="qty-controls"><button onclick="changeQty(7,-1)">−</button><span id="qty-7">0</span><button onclick="changeQty(7,1)">+</button></div></div>
+          <div class="accessory">USB3.0 500GB HDD (175 Games) <div class="qty-controls"><button onclick="changeQty(8,-1)">−</button><span id="qty-8">0</span><button onclick="changeQty(8,1)">+</button></div></div>
+        </div>
+
+        <h3 class="section-title">Controllers & Cards</h3>
+        <div class="accessory-grid">
+          <div class="accessory">Memory Card 8MB FMCB <div class="qty-controls"><button onclick="changeQty(9,-1)">−</button><span id="qty-9">0</span><button onclick="changeQty(9,1)">+</button></div></div>
+          <div class="accessory">Wired Gamepad <div class="qty-controls"><button onclick="changeQty(10,-1)">−</button><span id="qty-10">0</span><button onclick="changeQty(10,1)">+</button></div></div>
+          <div class="accessory">Wireless Gamepad <div class="qty-controls"><button onclick="changeQty(11,-1)">−</button><span id="qty-11">0</span><button onclick="changeQty(11,1)">+</button></div></div>
+          <div style="visibility:hidden"></div>
+        </div>
+
+        <div style="margin-top:18px">
+          <div class="muted">Added Accessories</div>
+          <ul id="accessorySummaryList" style="padding-left:18px;color:var(--muted);margin-top:8px"></ul>
+          <div class="small" style="margin-top:6px">Total Items: <strong id="totalItems">0</strong></div>
+        </div>
+
+        <!-- customer form compact -->
+        <h3 class="section-title">Customer Details</h3>
+        <form id="customerForm" style="display:grid;gap:8px">
+          <input name="name" placeholder="Name *" required style="padding:9px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+          <input name="mobile" pattern="[0-9]{10}" placeholder="Mobile *" required title="10-digit" style="padding:9px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+          <input name="alt_mobile" pattern="[0-9]{10}" placeholder="Alt Mobile *" required title="10-digit" style="padding:9px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+          <input name="email" placeholder="Email" type="email" style="padding:9px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+          <textarea name="address" placeholder="Address *" required style="padding:9px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--text);min-height:70px"></textarea>
+        </form>
+
       </div>
     </div>
-  </div>
 
-  <div class="accessory-section">
-    <h3>Cables &amp; TV Connection</h3>
-    <div class="category-box">
-      <div class="accessory">Power Adapter with Cable - ₹499
-        <div><button onclick="changeQty(0, -1)">-</button> <span id="qty-0">0</span> <button onclick="changeQty(0, 1)">+</button></div>
-      </div>
-      <div class="accessory">AV Cable - ₹199
-        <div><button onclick="changeQty(1, -1)">-</button> <span id="qty-1">0</span> <button onclick="changeQty(1, 1)">+</button></div>
-      </div>
-      <div class="accessory">HDMI Converter - ₹550
-        <div><button onclick="changeQty(2, -1)">-</button> <span id="qty-2">0</span> <button onclick="changeQty(2, 1)">+</button></div>
-      </div>
-      <div class="accessory">HDMI Normal 1.5m Cable - ₹90
-        <div><button onclick="changeQty(3, -1)">-</button> <span id="qty-3">0</span> <button onclick="changeQty(3, 1)">+</button></div>
-      </div>
-      <div class="accessory">HDMI Best 1.5m Cable - ₹299
-        <div><button onclick="changeQty(4, -1)">-</button> <span id="qty-4">0</span> <button onclick="changeQty(4, 1)">+</button></div>
+    <!-- demo video -->
+    <div style="margin-top:18px">
+      <h3 class="section-title">Watch Product Demo</h3>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-top:8px">
+        <iframe src="https://www.youtube.com/embed/py-V7CQjcYM" frameborder="0" allowfullscreen style="position:absolute;left:0;top:0;width:100%;height:100%"></iframe>
       </div>
     </div>
+  </main>
 
-    <h3>Game Drive (USB)</h3>
-    <div class="category-box">
-      <div class="accessory">USB2.0 64GB (21 Games) - ₹899
-        <div><button onclick="changeQty(5, -1)">-</button> <span id="qty-5">0</span> <button onclick="changeQty(5, 1)">+</button></div>
+  <!-- RIGHT: order summary & pay -->
+  <aside class="side">
+    <div class="order-box card">
+      <h3>Your Order Summary</h3>
+
+      <div class="summary-line"><div class="small">Console</div><div id="sideConsole" class="small">PS2 Slim x1</div></div>
+      <div class="summary-line"><div class="small">Warranty</div><div id="topWarranty" class="small">1 month</div></div>
+      <div class="summary-line"><div class="small">Accessories</div><div id="topTotalItems" class="small">0</div></div>
+      <div class="summary-line"><div class="small">Accessories Total</div><div id="topAccessoriesTotal" class="small">₹0</div></div>
+
+      <div style="margin-top:12px" class="summary-line"><div><strong>Grand Total</strong></div><div class="big-total">₹<span id="topGrandTotal">6299</span></div></div>
+
+      <div style="margin-top:12px">
+        <label class="small">Payment Mode</label>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <label style="display:flex;gap:6px;align-items:center"><input type="radio" name="paymentMode" value="prepaid" checked onchange="togglePaymentMode()"> <span class="small">Full Payment</span></label>
+          <label style="display:flex;gap:6px;align-items:center"><input type="radio" name="paymentMode" value="cod" onchange="togglePaymentMode()"> <span class="small">Cash on Delivery</span></label>
+        </div>
       </div>
-      <div class="accessory">USB3.0 128GB (41 Games) - ₹1599
-        <div><button onclick="changeQty(6, -1)">-</button> <span id="qty-6">0</span> <button onclick="changeQty(6, 1)">+</button></div>
+
+      <div id="prepaidDetails" style="margin-top:10px" class="small">Prepaid courier ₹299 will be added.</div>
+      <div id="codDetails" style="display:none;margin-top:10px" class="small">COD courier ₹450 will be added. Advance: 10% of total.</div>
+
+      <div class="upi-buttons" style="margin-top:12px">
+        <a id="upiPaytm" class="upi-paytm" href="#" onclick="updateUpiLink('upiPaytm')" target="_blank">Pay via Paytm</a>
+        <a id="upiGPay" class="upi-gpay" href="#" onclick="updateUpiLink('upiGPay')" target="_blank">Pay via GPay</a>
       </div>
-      <div class="accessory">USB3.0 256GB SSD (71 Games) - ₹3499
-        <div><button onclick="changeQty(7, -1)">-</button> <span id="qty-7">0</span> <button onclick="changeQty(7, 1)">+</button></div>
+
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+        <button class="btn" onclick="openBuyFlow()">Buy / Confirm</button>
+        <button class="btn yt" onclick="sendOrderToWhatsApp()">Send Order to WhatsApp</button>
       </div>
-      <div class="accessory">USB3.0 500GB HDD (175 Games) - ₹3999
-        <div><button onclick="changeQty(8, -1)">-</button> <span id="qty-8">0</span> <button onclick="changeQty(8, 1)">+</button></div>
-      </div>
+
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">After UPI payment, press "Send Order to WhatsApp" to submit your details and payment details.</div>
     </div>
-
-    <h3>Controllers &amp; Cards</h3>
-    <div class="category-box">
-      <div class="accessory">MEMORY CARD 8MB FMCB - ₹699
-        <div><button onclick="changeQty(9, -1)">-</button> <span id="qty-9">0</span> <button onclick="changeQty(9, 1)">+</button></div>
-      </div>
-      <div class="accessory">Wired Gamepad - ₹465
-        <div><button onclick="changeQty(10, -1)">-</button> <span id="qty-10">0</span> <button onclick="changeQty(10, 1)">+</button></div>
-      </div>
-      <div class="accessory">Wireless Gamepad - ₹740
-        <div><button onclick="changeQty(11, -1)">-</button> <span id="qty-11">0</span> <button onclick="changeQty(11, 1)">+</button></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Added Accessories Summary -->
-  <div style="margin: 30px auto 10px; max-width: 600px; background: #fff; padding: 15px 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-    <h3 style="margin-bottom: 10px; text-align: center; font-size: 18px; color: #131921;">Added Accessories</h3>
-    <ul id="accessorySummaryList" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
-    <div style="text-align: center; font-weight: bold;">Total Items: <span id="totalItems">0</span></div>
-  </div>
-
-  <!-- Customer Form -->
-  <div style="margin: 30px auto; padding: 25px; max-width: 600px; background: #fefefe; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-    <h3 style="margin-bottom: 20px; text-align: center;">Customer Details (Add your details correctly)</h3>
-    <form id="customerForm">
-      <input name="name" placeholder="Name *" required style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-      <input name="mobile" pattern="[0-9]{10}" placeholder="Mobile *" required style="width: 100%; padding: 10px; margin-bottom: 15px;" title="Enter 10-digit mobile number" type="tel"/>
-      <input name="alt_mobile" pattern="[0-9]{10}" placeholder="Alt Mobile *" required style="width: 100%; padding: 10px; margin-bottom: 15px;" title="Enter 10-digit mobile number" type="tel"/>
-      <input name="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="email"/>
-      <textarea name="address" placeholder="Address *" required style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea>
-      <input name="landmark" placeholder="Landmark" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-      <input name="pincode" placeholder="Pincode *" required style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-      <input name="city" placeholder="City *" required style="width: 100%; padding: 10px; margin-bottom: 10px;" type="text"/>
-    </form>
-  </div>
-
-  <div style="margin: 10px auto 20px; text-align: center;">
-    <div style="display: inline-block; background: #e8f5e9; color: #2e7d32; font-weight: bold; font-size: 16px; padding: 10px 20px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
-      After entering customer details, now pay via UPI
-    </div>
-  </div>
-
-  <!-- Order Summary Top -->
-  <div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #e8f5e9; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-    <h3 style="text-align: center; margin-bottom: 15px; color: #2e7d32;">Your Order Summary</h3>
-    <ul id="accessorySummaryListTop" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
-    <div><strong>Warranty:</strong> <span id="topWarranty">1 month</span></div>
-    <div><strong>Total Items:</strong> <span id="topTotalItems">0</span></div>
-    <div><strong>Accessories Total:</strong> ₹<span id="topAccessoriesTotal">0</span></div>
-    <div><strong>Grand Total:</strong> ₹<span id="topGrandTotal">6299</span></div>
-  </div>
-
-  <!-- Payment Method -->
-  <div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #fff7e6; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-    <h3 style="text-align: center; margin-bottom: 15px;">Choose Payment Method</h3>
-    <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
-      <label><input type="radio" name="paymentMode" value="prepaid" checked onchange="togglePaymentMode()"> Full Payment</label>
-      <label><input type="radio" name="paymentMode" value="cod" onchange="togglePaymentMode()"> Cash on Delivery</label>
-    </div>
-    <div id="codDetails" style="display:none; font-size: 14px; color: #333; line-height: 1.6;">
-      <p><strong>Courier Charges:</strong> ₹450 (added)</p>
-      <p><strong>Advance to Pay Now (10%):</strong> ₹<span id="codAdvance">0</span></p>
-      <p><strong>Amount to Pay on Delivery:</strong> ₹<span id="codDue">0</span></p>
-    </div>
-    <div id="prepaidDetails" style="display:block; font-size: 14px; color: #333; line-height: 1.6;">
-      <p><strong>Prepaid Courier Charges:</strong> ₹299 (added)</p>
-    </div>
-  </div>
-
-  <!-- UPI Buttons -->
-  <div id="upiButtonsFixed" style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        margin-top: 20px;
-    ">
-    <a href="#" id="upiPaytm" onclick="updateUpiLink('upiPaytm')" style="background: #002970; color: white; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-decoration: none; width: 90%; max-width: 400px; text-align: center;">
-      Pay via Paytm
-    </a>
-    <a href="#" id="upiGPay" onclick="updateUpiLink('upiGPay')" style="background: #4285F4; color: white; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-decoration: none; width: 90%; max-width: 400px; text-align: center;">Pay via GPay</a>
-  </div>
-
-  <div style="margin: 20px auto 10px; text-align: center;">
-    <div style="display: inline-block; background: #fff3e0; color: #e65100; font-weight: bold; font-size: 16px; padding: 10px 20px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
-      After successful payment, now click on Buy Now
-    </div>
-  </div>
-
-  <div style="text-align: center; margin-top: 40px;">
-    <h2 style="color: #25D366; font-weight: bold;">Order on WhatsApp</h2>
-  </div>
-  <div style="text-align: center; margin-top: 10px;">
-    <button onclick="sendOrderToWhatsApp()" style="background-color: #25D366; color: white; font-size: 16px; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-      Send Order to WhatsApp
-    </button>
-  </div>
-
-  <div style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #ccc; font-size: 15px; line-height: 1.8; color: #333;">
-    <strong>Warranty Information:</strong><br/>
-    • <strong>PS2 Console:</strong> Minimum 1-month warranty included.<br/>
-    • <strong>Additional Warranty:</strong> ₹300 per additional month.<br/>
-    • <strong>Accessories:</strong> 1-Day Testing warranty only.<br/>
-    • <strong>USB Drives:</strong> 6-months warranty.
-  </div>
-
-  <!-- YouTube Channels -->
-  <div style="text-align: center; margin-top: 30px;">
-    <h3>Our YouTube Channels</h3>
-    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-      <a href="https://youtube.com/@singhtechgaming" style="background: #ff0000; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; width: 90%; max-width: 400px;" target="_blank">
-        Singh Tech Gaming
-      </a>
-      <a href="https://youtube.com/@gamesplanet13" style="background: #2ecc71; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; width: 90%; max-width: 400px;" target="_blank">
-        Games Planet 13
-      </a>
-      <a href="https://youtube.com/@gamesvallah" style="background: #3498db; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; width: 90%; max-width: 400px;" target="_blank">
-        Games Vallah
-      </a>
-      <a href="https://youtube.com/@gamingtechindi" style="background: #f39c12; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; width: 90%; max-width: 400px;" target="_blank">
-        Gaming Tech India
-      </a>
-    </div>
-  </div>
-
-  <div style="text-align: center; margin-top: 25px;">
-    <a href="https://www.instagram.com/singhtech1?igsh=MTMzeG4zbXhnMjN5Zw==" style="background: #e4405f; color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px;" target="_blank">
-      Follow us on Instagram
-    </a>
-  </div>
-
-  <div style="margin-top: 40px; text-align: center;">
-    <h3>Watch Product Demo</h3>
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-      <iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/py-V7CQjcYM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-  </div>
+  </aside>
 
 </div> <!-- container end -->
 
-<div id="totalSticky">
-  Total: ₹<span id="stickyTotal">6299</span>
-</div>
+<!-- sticky total bottom -->
+<div id="totalSticky">Total: ₹<span id="stickyTotal">6299</span></div>
 
-<div style="text-align: center; margin-top: 40px;">
-  <h3>Contact Us</h3>
-  <div class="contact-icons">
-    <a href="tel:7983624797" title="Call">
-      <i class="fas fa-phone"></i>
-    </a>
-    <a href="https://wa.me/917983624797" target="_blank" title="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="mailto:gamesplanet.7983624797@gmail.com" title="Email">
-      <i class="fas fa-envelope"></i>
-    </a>
-  </div>
-</div>
-
-<footer style="text-align: center; padding: 20px 0; font-size: 14px; color: #777;">
-  All rights reserved © 2017–2025
-</footer>
+<footer style="text-align:center;margin-top:24px;color:var(--muted)"><small>Contact: <a href="tel:7983624797" style="color:var(--text);text-decoration:none">+91 79836 24797</a> • Email: <a href="mailto:gamesplanet.7983624797@gmail.com" style="color:var(--text);text-decoration:none">gamesplanet.7983624797@gmail.com</a></small></footer>
 
 <script>
-/* ------------------ COLOR DATA + DISPLAY ------------------ */
+/* ---------- Data & State (same logic as your PS2 page) ---------- */
 const colorData = {
   black: { price: 6299, mrp: 7399 },
   white: { price: 6799, mrp: 7999 },
   silver: { price: 6999, mrp: 8249 }
 };
 
-function updateColorDisplay() {
-  const colorSel = document.getElementById('ps2Color').value;
-  const base = colorData[colorSel].price;
-  const mrp = colorData[colorSel].mrp;
-  const discount = Math.round(((mrp - base) / mrp) * 100);
-  const mrpEl = document.getElementById('mrpValue');
-  const baseEl = document.getElementById('basePriceDisplay');
-  const discEl = document.getElementById('discountPercent');
-  if (mrpEl) mrpEl.innerText = '₹' + mrp;
-  if (baseEl) baseEl.innerText = '₹' + base;
-  if (discEl) discEl.innerText = `(${discount}% OFF)`;
-}
-
-/* ------------------ BASES & PRICES ------------------ */
 let warranty = 1;
-// prices array matches order of accessory names below
 const prices = [499, 199, 550, 90, 299, 899, 1599, 3499, 3999, 699, 465, 740];
 let quantities = Array(prices.length).fill(0);
 
-/* ------------------ HELPERS ------------------ */
-function changeWarranty(val) {
-  warranty = Math.max(1, warranty + val);
+/* ---------- Helpers ---------- */
+function fmtINR(n){ return '₹' + Number(n).toLocaleString('en-IN'); }
+
+/* update color display */
+function updateColorDisplay(){
+  const color = document.getElementById('ps2Color').value;
+  const base = colorData[color].price;
+  const mrp = colorData[color].mrp;
+  const discount = Math.round(((mrp - base) / mrp) * 100);
+  document.getElementById('mrpValue').innerText = fmtINR(mrp);
+  document.getElementById('basePriceDisplay').innerText = fmtINR(base);
+  document.getElementById('discountPercent').innerText = `(${discount}% OFF)`;
+}
+
+/* warranty */
+function changeWarranty(delta){
+  warranty = Math.max(1, warranty + delta);
   document.getElementById('warranty').innerText = warranty;
+  document.getElementById('topWarranty').innerText = warranty + (warranty>1 ? ' months' : ' month');
   updateTotal();
 }
 
-function changeQty(index, delta) {
+/* quantities */
+function changeQty(index, delta){
   quantities[index] = Math.max(0, quantities[index] + delta);
-  const el = document.getElementById(`qty-${index}`);
-  if (el) el.innerText = quantities[index];
+  const el = document.getElementById('qty-' + index);
+  if(el) el.innerText = quantities[index];
   updateTotal();
 }
 
-/* accessory summaries */
-function updateAccessorySummary() {
+/* accessory summary */
+function updateAccessorySummary(){
   const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
   const summaryList = document.getElementById('accessorySummaryList');
-  const summaryTopList = document.getElementById('accessorySummaryListTop');
-  const totalItemsSpan = document.getElementById('totalItems');
-  if (summaryList) summaryList.innerHTML = '';
-  if (summaryTopList) summaryTopList.innerHTML = '';
+  const topList = document.getElementById('accessorySummaryListTop'); // not used UI but kept
+  if(summaryList) summaryList.innerHTML = '';
   let itemCount = 1; // console included
+  // console always present
+  const ps2Item = document.createElement('li'); ps2Item.innerText = 'PS2 Slim x1';
+  if(summaryList) summaryList.appendChild(ps2Item);
 
-  const ps2Item = document.createElement('li');
-  ps2Item.innerText = "PS2 Slim x1";
-  if (summaryList) summaryList.appendChild(ps2Item);
-  if (summaryTopList) summaryTopList.appendChild(ps2Item.cloneNode(true));
-
-  for (let i = 0; i < quantities.length; i++) {
-    if (quantities[i] > 0) {
+  for(let i=0;i<quantities.length;i++){
+    if(quantities[i] > 0){
       const li = document.createElement('li');
       li.innerText = `${names[i]} x${quantities[i]}`;
-      if (summaryList) summaryList.appendChild(li);
-      if (summaryTopList) summaryTopList.appendChild(li.cloneNode(true));
+      summaryList.appendChild(li);
       itemCount += quantities[i];
     }
   }
-
-  if (totalItemsSpan) totalItemsSpan.innerText = itemCount;
-  const topTotalItems = document.getElementById('topTotalItems');
-  if (topTotalItems) topTotalItems.innerText = itemCount;
+  document.getElementById('totalItems').innerText = itemCount;
+  document.getElementById('topTotalItems').innerText = itemCount;
 }
 
-/* ------------------ TOTALS & UPI ------------------ */
-function updateTotal() {
+/* top summary and grand total */
+function updateTopSummary(){
+  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
+  let accessoriesTotal = 0;
+  let itemCount = 1;
+  for(let i=0;i<quantities.length;i++){
+    accessoriesTotal += quantities[i] * prices[i];
+    itemCount += quantities[i];
+  }
+  document.getElementById('topAccessoriesTotal').innerText = accessoriesTotal ? fmtINR(accessoriesTotal) : '₹0';
+  document.getElementById('topTotalItems').innerText = itemCount;
+  // grand total calculation
+  const colorSel = document.getElementById('ps2Color').value;
+  const base = colorData[colorSel].price;
+  let grandTotal = base + (warranty - 1) * 300 + accessoriesTotal;
+  const payment = document.querySelector('input[name="paymentMode"]:checked')?.value;
+  if(payment === 'prepaid') grandTotal += 299; else grandTotal += 450;
+  document.getElementById('topGrandTotal').innerText = grandTotal;
+}
+
+/* Build UPI link updates (for Paytm/GPay anchors) */
+function updateUpiLink(id) {
+  const upiAddress = 'paytmqr5hyx5o@ptys';
+  const isCOD = document.querySelector('input[name="paymentMode"]:checked')?.value === 'cod';
+  let amount;
+  if(isCOD){
+    amount = document.getElementById('codAdvance')?.innerText || document.getElementById('stickyTotal')?.innerText;
+  } else {
+    amount = document.getElementById('stickyTotal')?.innerText;
+  }
+  if(!amount) amount = '0';
+  // strip non-numeric
+  amount = String(amount).replace(/[^\d]/g,'');
+  // ensure at least 1 or empty
+  if(!amount) amount = '0';
+  const upiUrl = `upi://pay?pa=${upiAddress}&pn=Games%20Planet&cu=INR&am=${amount}`;
+  const el = document.getElementById(id);
+  if(el) el.setAttribute('href', upiUrl);
+}
+
+/* toggle payment mode */
+function togglePaymentMode(){
+  updateTotal();
+}
+
+/* total calculator */
+function updateTotal(){
   const colorSel = document.getElementById('ps2Color').value;
   const basePrice = colorData[colorSel].price;
-  const basePriceDisplay = document.getElementById('basePriceDisplay');
-  if (basePriceDisplay) basePriceDisplay.innerText = '₹' + basePrice;
+  document.getElementById('basePriceDisplay').innerText = fmtINR(basePrice);
 
   let total = basePrice + (warranty - 1) * 300;
-  for (let i = 0; i < prices.length; i++) {
+  for(let i=0;i<prices.length;i++){
     total += quantities[i] * prices[i];
   }
 
   const paymentModeEl = document.querySelector('input[name="paymentMode"]:checked');
   const isCOD = paymentModeEl && paymentModeEl.value === 'cod';
 
-  if (isCOD) {
+  if(isCOD){
     const courier = 450;
     total += courier;
     document.getElementById('codDetails').style.display = 'block';
     document.getElementById('prepaidDetails').style.display = 'none';
-
-    // Advance / due logic (10% advance)
     const advance = Math.ceil(total * 0.1);
     const due = total - advance;
+    // store in elements for UPI and message use
+    if(!document.getElementById('codAdvance')) {
+      const el = document.createElement('div'); el.id='codAdvance'; el.style.display='none'; document.body.appendChild(el);
+    }
+    if(!document.getElementById('codDue')) {
+      const el = document.createElement('div'); el.id='codDue'; el.style.display='none'; document.body.appendChild(el);
+    }
     document.getElementById('codAdvance').innerText = advance;
     document.getElementById('codDue').innerText = due;
-    document.getElementById('stickyTotal').innerText = advance; // sticky shows amount to pay now
+    document.getElementById('stickyTotal').innerText = advance;
   } else {
     const courier = 299;
     total += courier;
@@ -476,114 +381,49 @@ function updateTotal() {
     document.getElementById('stickyTotal').innerText = total;
   }
 
-  // update summaries + UPI
   updateAccessorySummary();
   updateTopSummary();
   updateUpiLink('upiPaytm');
   updateUpiLink('upiGPay');
 }
 
-function updateTopSummary() {
-  let accessoriesTotal = 0;
-  let totalItems = 1;
-  const summaryTopList = document.getElementById('accessorySummaryListTop');
-  if (summaryTopList) summaryTopList.innerHTML = '';
-  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
-
-  const ps2Item = document.createElement('li');
-  ps2Item.innerText = "PS2 Slim x1";
-  if (summaryTopList) summaryTopList.appendChild(ps2Item);
-
-  for (let i = 0; i < quantities.length; i++) {
-    if (quantities[i] > 0) {
-      const li = document.createElement('li');
-      li.innerText = `${names[i]} x${quantities[i]}`;
-      if (summaryTopList) summaryTopList.appendChild(li);
-      accessoriesTotal += quantities[i] * prices[i];
-      totalItems += quantities[i];
-    }
-  }
-
-  const topWarranty = document.getElementById('topWarranty');
-  if (topWarranty) topWarranty.innerText = `${warranty} month${warranty > 1 ? 's' : ''}`;
-  const topTotalItems = document.getElementById('topTotalItems');
-  if (topTotalItems) topTotalItems.innerText = totalItems;
-  const topAccessoriesTotal = document.getElementById('topAccessoriesTotal');
-  if (topAccessoriesTotal) topAccessoriesTotal.innerText = accessoriesTotal;
-
-  const colorSel = document.getElementById('ps2Color').value;
-  const base = colorData[colorSel].price;
-  let grandTotal = base + (warranty - 1) * 300 + accessoriesTotal;
-  const payment = document.querySelector('input[name="paymentMode"]:checked')?.value;
-  if (payment === 'prepaid') grandTotal += 299;
-  else grandTotal += 450;
-  const topGrandTotal = document.getElementById('topGrandTotal');
-  if (topGrandTotal) topGrandTotal.innerText = grandTotal;
-}
-
-/* Build UPI link updates (for Paytm/GPay anchors) */
-function updateUpiLink(id) {
-  const upiAddress = 'paytmqr5hyx5o@ptys';
-  const isCOD = document.querySelector('input[name="paymentMode"]:checked')?.value === 'cod';
-  let amount;
-  if (isCOD) {
-    amount = document.getElementById('codAdvance')?.innerText || document.getElementById('stickyTotal')?.innerText;
-  } else {
-    amount = document.getElementById('stickyTotal')?.innerText;
-  }
-  if (!amount) amount = '0';
-  amount = String(amount).replace(/[^\d]/g, '');
-  const upiUrl = `upi://pay?pa=${upiAddress}&pn=PS2%20Order&cu=INR&am=${amount}`;
-  const el = document.getElementById(id);
-  if (el) el.setAttribute('href', upiUrl);
-}
-
-/* toggle payment mode (prepaid/cod) */
-function togglePaymentMode() {
-  updateTotal();
-}
-
-/* ------------------ WhatsApp Order Builder (patched) ------------------ */
-function sendOrderToWhatsApp() {
+/* WhatsApp order builder */
+function sendOrderToWhatsApp(){
   const form = document.querySelector('#customerForm');
+  if(!form.checkValidity()){
+    alert('Please fill required customer details (Name, Mobile, Alt Mobile, Address).');
+    return;
+  }
   const formData = new FormData(form);
   const now = new Date();
-  const orderID = `${String(now.getDate()).padStart(2,'0')}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getFullYear()).toString().slice(-2)}.${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}pm`;
+  const orderID = `${String(now.getDate()).padStart(2,'0')}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getFullYear()).slice(-2)}.${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
 
   let msg = `*Order ID:* ${orderID}%0A%0A*Customer Details:*%0A`;
   formData.forEach((val, key) => {
-    const label = key.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
+    const label = key.replace('_',' ').replace(/\b\w/g, c => c.toUpperCase());
     msg += `${label}: ${val}%0A`;
   });
 
-  // payment mode first
   const isCOD = document.querySelector('input[name="paymentMode"]:checked')?.value === 'cod';
-  let courierCharge, orderType, courierText;
-  if (isCOD) {
-    orderType = "COD Order";
-    courierCharge = 450;
-    courierText = "COD Courier Charges";
-  } else {
-    orderType = "Prepaid Order";
-    courierCharge = 299;
-    courierText = "Prepaid Courier Charges";
-  }
-
-  msg += `%0A*${orderType}*%0A${courierText}: ₹${courierCharge}%0A`;
+  let courierCharge = isCOD ? 450 : 299;
+  let orderType = isCOD ? 'COD Order' : 'Prepaid Order';
+  msg += `%0A*${orderType}*%0ACourier Charges: ₹${courierCharge}%0A`;
 
   const colorText = document.getElementById('ps2Color').options[document.getElementById('ps2Color').selectedIndex].text;
-  msg += `%0A*PS2 Order:*%0AConsole: ${colorText}%0AWarranty: ${warranty} months - ₹${(warranty - 1) * 300}%0A`;
+  msg += `%0A*PS2 Order:*%0AConsole: ${colorText}%0AWarranty: ${warranty} months - ₹${(warranty-1)*300}%0A`;
 
   const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
-  for (let i = 0; i < quantities.length; i++) {
-    if (quantities[i] > 0) {
+  for(let i=0;i<quantities.length;i++){
+    if(quantities[i] > 0){
       msg += `${names[i]} x${quantities[i]} - ₹${quantities[i] * prices[i]}%0A`;
     }
   }
 
   let totalToShow = '';
-  if (isCOD) {
-    totalToShow = document.getElementById('codAdvance').innerText + ' (advance) + ' + document.getElementById('codDue').innerText + ' (on delivery)';
+  if(isCOD){
+    const advance = document.getElementById('codAdvance')?.innerText || '0';
+    const due = document.getElementById('codDue')?.innerText || '0';
+    totalToShow = `${advance} (advance) + ${due} (on delivery)`;
   } else {
     totalToShow = document.getElementById('stickyTotal').innerText;
   }
@@ -593,12 +433,27 @@ function sendOrderToWhatsApp() {
   window.open(whatsappURL, '_blank');
 }
 
-/* ------------------ Init on load ------------------ */
+/* confirm/buy flow */
+function openBuyFlow(){
+  // quick check: ensure customer details are present
+  const form = document.querySelector('#customerForm');
+  if(!form.checkValidity()){
+    alert('Please complete the customer details first (Name, Mobile, Alt Mobile, Address).');
+    return;
+  }
+  // recommend user to pay first via UPI button and then press Send Order to WhatsApp
+  if(confirm('Pay via UPI (Paytm/GPay) and then press OK to open WhatsApp to send order details. Proceed?')) {
+    // automatically open whatsapp order builder to keep flow simple
+    sendOrderToWhatsApp();
+  }
+}
+
+/* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   // initialize qty displays
   for (let i = 0; i < prices.length; i++) {
     const el = document.getElementById(`qty-${i}`);
-    if (el) el.innerText = quantities[i];
+    if(el) el.innerText = quantities[i];
   }
   updateColorDisplay();
   updateTotal();
