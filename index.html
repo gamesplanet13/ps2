@@ -268,7 +268,7 @@ body { padding-bottom: 160px; }
     </div>
     <div id="codDetails" style="display:none; font-size: 14px; color: #333; line-height: 1.6;">
       <p><strong>Courier Charges:</strong> ₹450 (added)</p>
-      <p><strong>Advance to Pay Now (20%):</strong> ₹<span id="codAdvance">0</span></p>
+      <p><strong>Advance to Pay Now (10%):</strong> ₹<span id="codAdvance">0</span></p>
       <p><strong>Amount to Pay on Delivery:</strong> ₹<span id="codDue">0</span></p>
     </div>
     <div id="prepaidDetails" style="display:block; font-size: 14px; color: #333; line-height: 1.6;">
@@ -462,8 +462,8 @@ function updateTotal() {
     document.getElementById('codDetails').style.display = 'block';
     document.getElementById('prepaidDetails').style.display = 'none';
 
-    // Advance / due logic (20% advance)
-    const advance = Math.ceil(total * 0.2);
+    // Advance / due logic (10% advance)
+    const advance = Math.ceil(total * 0.1);
     const due = total - advance;
     document.getElementById('codAdvance').innerText = advance;
     document.getElementById('codDue').innerText = due;
