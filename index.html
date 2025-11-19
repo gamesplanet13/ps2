@@ -218,6 +218,10 @@ body { padding-bottom: 160px; }
       <div class="accessory">Wireless Gamepad - ₹740
         <div><button onclick="changeQty(11, -1)">-</button> <span id="qty-11">0</span> <button onclick="changeQty(11, 1)">+</button></div>
       </div>
+      <!-- NEW ITEM INSERTED HERE -->
+      <div class="accessory">4 AAA Rechargeable Batteries + Charger - ₹999
+        <div><button onclick="changeQty(12, -1)">-</button> <span id="qty-12">0</span> <button onclick="changeQty(12, 1)">+</button></div>
+      </div>
     </div>
   </div>
 
@@ -394,7 +398,7 @@ function updateColorDisplay() {
 /* ------------------ BASES & PRICES ------------------ */
 let warranty = 1;
 // prices array matches order of accessory names below
-const prices = [499, 199, 550, 90, 299, 899, 1599, 3499, 3999, 699, 465, 740];
+const prices = [499, 199, 550, 90, 299, 899, 1599, 3499, 3999, 699, 465, 740, 999];
 let quantities = Array(prices.length).fill(0);
 
 /* ------------------ HELPERS ------------------ */
@@ -413,7 +417,7 @@ function changeQty(index, delta) {
 
 /* accessory summaries */
 function updateAccessorySummary() {
-  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
+  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger"];
   const summaryList = document.getElementById('accessorySummaryList');
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   const totalItemsSpan = document.getElementById('totalItems');
@@ -488,7 +492,7 @@ function updateTopSummary() {
   let totalItems = 1;
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   if (summaryTopList) summaryTopList.innerHTML = '';
-  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
+  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger"];
 
   const ps2Item = document.createElement('li');
   ps2Item.innerText = "PS2 Slim x1";
@@ -574,7 +578,7 @@ function sendOrderToWhatsApp() {
   const colorText = document.getElementById('ps2Color').options[document.getElementById('ps2Color').selectedIndex].text;
   msg += `%0A*PS2 Order:*%0AConsole: ${colorText}%0AWarranty: ${warranty} months - ₹${(warranty - 1) * 300}%0A`;
 
-  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad"];
+  const names = ["Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best", "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD", "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger"];
   for (let i = 0; i < quantities.length; i++) {
     if (quantities[i] > 0) {
       msg += `${names[i]} x${quantities[i]} - ₹${quantities[i] * prices[i]}%0A`;
@@ -607,7 +611,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
-
-
-is html ko dekh and iske sare product price system sb note krle
