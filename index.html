@@ -282,6 +282,15 @@ function updateColorDisplay() {
 let warranty = 1;
 // prices array matches order of accessory names below
 const prices = [499, 199, 550, 90, 299, 899, 1599, 3499, 3999, 699, 465, 740, 999];
+
+// Global names array (used by multiple functions, including WhatsApp builder)
+const names = [
+  "Power Adapter with Cable", "AV Cable", "HDMI Converter", "HDMI Normal", "HDMI Best",
+  "USB 64GB", "USB 128GB", "USB 256GB SSD", "USB 500GB HDD",
+  "Memory Card 8MB FMCB", "Wired Gamepad", "Wireless Gamepad",
+  "4 AAA Rechargeable Batteries + Charger"
+];
+
 let quantities = Array(prices.length).fill(0);
 
 /* ------------------ HELPERS ------------------ */
