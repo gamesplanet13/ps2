@@ -148,14 +148,14 @@ body { padding-bottom: 160px; }
 <!-- COLOR SELECTOR PATCHED -->
 <label style="font-weight:bold; margin-right:8px;">Choose Colour:</label>
 <select id="ps2Color" onchange="updateColorDisplay(); updateTotal()" style="padding:8px; border-radius:6px;">
-<option value="black">Black - ₹6299</option>
+<option value="black">Black - ₹6499</option>
 <option value="white">White - ₹6799</option>
 <option value="silver">Silver - ₹6999</option>
 </select>
 <h2 style="margin-top:10px">
-      Price: <s id="mrpValue">₹7399</s>
-<span id="basePriceDisplay">₹6299</span>
-<span id="discountPercent" style="color:#27ae60;font-weight:bold;">(15% OFF)</span>
+      Price: <s id="mrpValue">₹7999</s>
+<span id="basePriceDisplay">₹6499</span>
+<span id="discountPercent" style="color:#27ae60;font-weight:bold;">(18.75% OFF)</span>
 </h2>
 <div class="accessory">
 <label>Warranty (2 months free, ₹300/month extra):</label>
@@ -350,7 +350,7 @@ body { padding-bottom: 160px; }
 <script>
 /* ------------------ COLOR DATA + DISPLAY ------------------ */
 const colorData = {
-  black: { price: 6299, mrp: 7399 },
+  black: { price: 6499, mrp: 7999 },
   white: { price: 6799, mrp: 7999 },
   silver: { price: 6999, mrp: 8249 }
 };
@@ -371,7 +371,7 @@ function updateColorDisplay() {
 /* ------------------ BASES & PRICES ------------------ */
 let warranty = 2;
 // prices array matches order of accessory names below
-const prices = [499,99,279,99,299,0,0,0,0,499,365,499,999];
+const prices = [499,99,299,99,299,0,0,0,0,499,365,499,999];
 let quantities = Array(prices.length).fill(0);
 let gameDrivePrice = 1199;
 let gameDriveText = '64GB • ₹1199';
@@ -512,7 +512,7 @@ for (let i = 0; i < quantities.length; i++) {
   let grandTotal = base + Math.max(0,(warranty - 2))*300 + accessoriesTotal + gameDrivePrice;
   const payment = document.querySelector('input[name="paymentMode"]:checked')?.value;
   if (payment === 'prepaid') grandTotal += 299;
-  else grandTotal += 450;
+  else grandTotal += 599;
   const topGrandTotal = document.getElementById('topGrandTotal');
   if (topGrandTotal) topGrandTotal.innerText = grandTotal;
 }
