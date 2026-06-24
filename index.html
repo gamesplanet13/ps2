@@ -188,7 +188,7 @@ body { padding-bottom: 160px; }
 <h3>Game Drive (USB)</h3>
 <div class="category-box">
 <label><b>🎮 Select Game Drive</b></label>
-<select id="gameDrive" onchange="selectGameDrive()" style="width:100%;padding:10px;border-radius:8px;"><optgroup label="🔥 Top Games Pack"><option selected="selected" value="1199">🔥 64GB • 21 Games • ₹1199</option><option value="2299">🔥 128GB • 41 Games • ₹2299</option><option value="6499">🔥 256GB SSD • 71 Games • ₹6499</option><option value="6999">🔥 500GB HDD • 175 Games • ₹6999</option><option value="10999">🔥 500GB SSD • 175 Games • ₹10999</option></optgroup><optgroup label="🟡 Optional Games Pack"><option value="1299">🟡 64GB • Optional • ₹1299</option><option value="2499">🟡 128GB • Optional • ₹2499</option><option value="6799">🟡 256GB SSD • Optional • ₹6799</option><option value="7299">🟡 500GB HDD • Optional • ₹7299</option><option value="11499">🟡 500GB SSD • Optional • ₹11499</option></optgroup></select>
+<select id="gameDrive" onchange="selectGameDrive()" style="width:100%;padding:10px;border-radius:8px;"><option selected="selected" value="0">❌ No Game Drive Required</option><optgroup label="🔥 Top Games Pack"><option value="1199">🔥 64GB • 21 Games • ₹1199</option><option value="2299">🔥 128GB • 41 Games • ₹2299</option><option value="6499">🔥 256GB SSD • 71 Games • ₹6499</option><option value="6999">🔥 500GB HDD • 175 Games • ₹6999</option><option value="10999">🔥 500GB SSD • 175 Games • ₹10999</option></optgroup><optgroup label="🟡 Optional Games Pack"><option value="1299">🟡 64GB • Optional • ₹1299</option><option value="2499">🟡 128GB • Optional • ₹2499</option><option value="6799">🟡 256GB SSD • Optional • ₹6799</option><option value="7299">🟡 500GB HDD • Optional • ₹7299</option><option value="11499">🟡 500GB SSD • Optional • ₹11499</option></optgroup></select>
 </div>
 </div>
 <h3>Controllers &amp; Cards</h3>
@@ -371,10 +371,10 @@ function updateColorDisplay() {
 /* ------------------ BASES & PRICES ------------------ */
 let warranty = 2;
 // prices array matches order of accessory names below
-const prices = [499,99,299,99,299,0,0,0,0,499,365,499,999];
+const prices = [499,99,279,99,299,0,0,0,0,499,365,499,999];
 let quantities = Array(prices.length).fill(0);
-let gameDrivePrice = 1199;
-let gameDriveText = '64GB • ₹1199';
+let gameDrivePrice = 0;
+let gameDriveText = 'No Game Drive';
 
 quantities[0]=1;
 quantities[1]=1;
@@ -512,7 +512,7 @@ for (let i = 0; i < quantities.length; i++) {
   let grandTotal = base + Math.max(0,(warranty - 2))*300 + accessoriesTotal + gameDrivePrice;
   const payment = document.querySelector('input[name="paymentMode"]:checked')?.value;
   if (payment === 'prepaid') grandTotal += 299;
-  else grandTotal += 599;
+  else grandTotal += 450;
   const topGrandTotal = document.getElementById('topGrandTotal');
   if (topGrandTotal) topGrandTotal.innerText = grandTotal;
 }
