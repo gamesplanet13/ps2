@@ -380,7 +380,7 @@ body { padding-bottom: 160px; }
 </div>
 </div>
 <footer style="text-align: center; padding: 20px 0; font-size: 14px; color: #777;">
-  All rights reserved © 2017–2025
+  All rights reserved © 2017–2026
 </footer>
 <script>
 /* ------------------ COLOR DATA + DISPLAY ------------------ */
@@ -529,11 +529,11 @@ for (let i = 0; i < quantities.length; i++) {
       if (summaryTopList) summaryTopList.appendChild(li);
       accessoriesTotal += quantities[i] * prices[i];
       
-  // add game drive price
-  accessoriesTotal += gameDrivePrice;
       totalItems += quantities[i];
     }
   }
+
+  accessoriesTotal += gameDrivePrice;
 
   const topWarranty = document.getElementById('topWarranty');
   if (topWarranty) topWarranty.innerText = `${warranty} month${warranty > 1 ? 's' : ''}`;
@@ -609,7 +609,9 @@ function sendOrderToWhatsApp() {
 
   msg += "\n";
 
-  const colorText = document.getElementById('ps2Color').options[document.getElementById('ps2Color').selectedIndex].text;
+  const colorValue = document.getElementById('ps2Color').value;
+  const colorMap = {black:"Black",white:"White",silver:"Silver"};
+  const colorText = colorMap[colorValue] || colorValue;
   msg += "Console: " + colorText + "\n";
 
   const select = document.getElementById("gameDrive");
