@@ -598,49 +598,33 @@ function sendOrderToWhatsApp() {
 
   const isCOD = document.querySelector('input[name="paymentMode"]:checked')?.value === 'cod';
 
-  let msg = "PS2 Order\n";
-  msg += isCOD ? "COD Order\n" : "Prepaid Order\n";
-  msg += "Order ID: " + orderID + "\n\n";
+  let msg = isCOD
+? "🔴 COD Order on WhatsApp\n\n"
+: "🟢 Prepaid Order on WhatsApp\n\n";
 
-  formData.forEach((val, key) => {
-    const label = key.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
-    msg += label + ": " + val + "\n";
-  });
+msg += "Order ID: " + orderID + "\n\n";
 
-  msg += "\n";
+msg += "Name: " + formData.get("name") + "\n";
+msg += "Mobile: +91" + formData.get("mobile") + "\n";
+msg += "Alt Mobile: " + formData.get("alt_mobile") + "\n";
+msg += "Email: " + formData.get("email") + "\n";
 
-  const colorValue = document.getElementById('ps2Color').value;
-  const colorMap = {black:"Black",white:"White",silver:"Silver"};
-  const colorText = colorMap[colorValue] || colorValue;
-  msg += "Console: " + colorText + "\n";
+msg += "Address: " + formData.get("address") + "\n";
+msg += "Landmark: " + formData.get("landmark") + "\n";
+msg += "Pincode: " + formData.get("pincode") + "\n";
+msg += "District/City: " + formData.get("city") + "\n\n";
 
-  const select = document.getElementById("gameDrive");
-  const selectedOption = select.options[select.selectedIndex];
-  if(selectedOption.value==='0'){
-    msg += "Game Drive: No Game Drive\n";
-  } else {
-    const packType = (selectedOption.parentElement.label || '').replace("🔥 ","").replace("🟡 ","");
-    const cleanText = selectedOption.text.replace("🔥 ","").replace("🟡 ","");
-    msg += "Game Drive: " + packType + " , " + cleanText + "\n";
-  }
+msg += "Product: PlayStation 2 Slim (Renewed)\n";
+msg += "Variant: " + colorText + "\n";
+msg += "Base Price: ₹" + colorData[document.getElementById("ps2Color").value].price + "\n";
+msg += "Discount Applied: ₹0\n";
 
-  msg += "Warranty: " + warranty + " months - ₹" + Math.max(0,(warranty - 2))*300 + "\n";
-
-  const names = ["Adapter","AV Cable","HDMI Converter","HDMI Normal","HDMI Best","USB64","USB128","USB256","USB500","FMCB","Wired","Wireless","Battery"];
-
-  for (let i = 0; i < quantities.length; i++) {
-    if (quantities[i] > 0) {
-      msg += names[i] + " x" + quantities[i] + " - ₹" + (quantities[i] * prices[i]) + "\n";
-    }
-  }
-
-  if (isCOD) {
-    msg += "COD Courier Charges: ₹599\n";
-    msg += "Total: ₹" + document.getElementById('codAdvance').innerText + " (advance) + ₹" + document.getElementById('codDue').innerText + " (on delivery)";
-  } else {
-    msg += "Prepaid Courier Charges: ₹" + (document.getElementById('courierService')?.value || 299) + "\n";
-    msg += "Total: ₹" + document.getElementById('stickyTotal').innerText;
-  }
+if(isCOD){
+    msg += "Amount Paid: ₹" + document.getElementById("codAdvance").innerText + "\n";
+    msg += "Rest on Delivery: ₹" + document.getElementById("codDue").innerText + "\n";
+}else{
+    msg += "Amount Paid: ₹" + document.getElementById("stickyTotal").innerText + "\n";
+}
 
   const url = "https://wa.me/917983624797?text=" + encodeURIComponent(msg);
   window.open(url, '_blank');
