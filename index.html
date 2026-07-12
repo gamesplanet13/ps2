@@ -154,28 +154,31 @@ body { padding-bottom: 160px; }
 <input type="hidden" id="ps2Color" value="black">
 <div id="imgModal" onclick="closeImg()"><span id="closeModal">&times;</span><img id="modalImg"></div><h2 style="margin-top:10px">
       Price: <s id="mrpValue">₹7999</s>
-<span id="basePriceDisplay">₹6499</span>
-<span id="discountPercent" style="color:#27ae60;font-weight:bold;">(18.75% OFF)</span>
+<span id="basePriceDisplay">₹6800</span>
+<span id="discountPercent" style="color:#27ae60;font-weight:bold;">(15% OFF)</span>
 </h2>
 <div class="accessory">
-<label>Warranty (2 months free, ₹300/month extra):</label>
+<label>Console Warranty:</label>
 <div>
-<button onclick="changeWarranty(-1)">-</button>
-<span id="warranty">2</span> month
-        <button onclick="changeWarranty(1)">+</button>
+<select id="warrantyPlan" onchange="changeWarrantyPlan()" style="padding:8px;border-radius:6px;">
+<option value="1" data-price="0">1 Month Free Warranty</option>
+<option value="6" data-price="1200">Total 6 Months Warranty - ₹1200</option>
+<option value="12" data-price="2000">Total 1 Year Warranty - ₹2000</option>
+</select>
+<span id="warranty" style="display:none;">1</span>
 </div>
 </div>
 </div>
 <div class="accessory-section">
 <h3>Cables &amp; TV Connection</h3>
 <div class="category-box">
-<div class="accessory">Power Adapter with Cable - ₹499
+<div class="accessory">Power Adapter with Cable - ₹599
         <div><button onclick="changeQty(0, -1)">-</button> <span id="qty-0">0</span> <button onclick="changeQty(0, 1)">+</button></div>
 </div>
 <div class="accessory">AV Cable - ₹99
         <div><button onclick="changeQty(1, -1)">-</button> <span id="qty-1">0</span> <button onclick="changeQty(1, 1)">+</button></div>
 </div>
-<div class="accessory">HDMI Converter - ₹279
+<div class="accessory">HDMI Converter - ₹360
         <div><button onclick="changeQty(2, -1)">-</button> <span id="qty-2">0</span> <button onclick="changeQty(2, 1)">+</button></div>
 </div>
 <div class="accessory">HDMI Normal 1.5m Cable - ₹99
@@ -200,10 +203,10 @@ body { padding-bottom: 160px; }
 <div class="accessory">MEMORY CARD 8MB FMCB - ₹499
         <div><button onclick="changeQty(9, -1)">-</button> <span id="qty-9">0</span> <button onclick="changeQty(9, 1)">+</button></div>
 </div>
-<div class="accessory">Wired Gamepad - ₹365
+<div class="accessory">Wired Gamepad - ₹375
         <div><button onclick="changeQty(10, -1)">-</button> <span id="qty-10">0</span> <button onclick="changeQty(10, 1)">+</button></div>
 </div>
-<div class="accessory">Wireless Gamepad - ₹499
+<div class="accessory">Wireless Gamepad - ₹525
         <div><button onclick="changeQty(11, -1)">-</button> <span id="qty-11">0</span> <button onclick="changeQty(11, 1)">+</button></div>
 </div>
 <!-- NEW ITEM INSERTED HERE -->
@@ -241,7 +244,7 @@ body { padding-bottom: 160px; }
 <div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #e8f5e9; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
 <h3 style="text-align: center; margin-bottom: 15px; color: #2e7d32;">Your Order Summary</h3>
 <ul id="accessorySummaryListTop" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
-<div><strong>Warranty:</strong> <span id="topWarranty">2 months</span></div>
+<div><strong>Console Warranty:</strong> <span id="topWarranty">1 month</span></div>
 <div><strong>Total Items:</strong> <span id="topTotalItems">0</span></div>
 <div><strong>Accessories Total:</strong> ₹<span id="topAccessoriesTotal">0</span></div>
 <div><strong>Grand Total:</strong> ₹<span id="topGrandTotal">6299</span></div>
@@ -315,10 +318,14 @@ body { padding-bottom: 160px; }
 </div>
 <div style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #ccc; font-size: 15px; line-height: 1.8; color: #333;">
 <strong>Warranty Information:</strong><br/>
-    • <strong>PS2 Console:</strong> Minimum 1-month warranty included.<br/>
-    • <strong>Additional Warranty:</strong> ₹300 per additional month.<br/>
-    • <strong>Accessories:</strong> 1-Day Testing warranty only.<br/>
-    • <strong>USB Drives:</strong> 6-months warranty.
+    • <strong>PS2 Console:</strong> 1-month warranty included free.<br/>
+    • <strong>Extended Console Warranty:</strong> Total 6 months for ₹1200, or total 1 year for ₹2000.<br/>
+    • <strong>Coverage:</strong> Extended warranty applies only to the PS2 console. Accessories are not covered.<br/>
+    • <strong>Pendrive:</strong> 5-year warranty.<br/>
+    • <strong>HDD:</strong> 1-year warranty.<br/>
+    • <strong>SSD:</strong> 2-year warranty.<br/>
+    • <strong>USB Enclosure:</strong> 1-month warranty.<br/>
+    • <strong>Testing Warranty Only:</strong> PS2 memory card, controllers, cables, cells, chargers and converters.
   </div>
 
 <div style="margin:25px 0;padding:18px;background:#eef7ff;border-radius:12px">
@@ -385,9 +392,9 @@ body { padding-bottom: 160px; }
 <script>
 /* ------------------ COLOR DATA + DISPLAY ------------------ */
 const colorData = {
-  black: { price: 6499, mrp: 7999 },
-  white: { price: 6799, mrp: 7999 },
-  silver: { price: 6999, mrp: 8249 }
+  black: { price: 6800, mrp: 7999 },
+  white: { price: 7300, mrp: 8499 },
+  silver: { price: 7800, mrp: 8999 }
 };
 
 function updateColorDisplay() {
@@ -404,9 +411,10 @@ function updateColorDisplay() {
 }
 
 /* ------------------ BASES & PRICES ------------------ */
-let warranty = 2;
+let warranty = 1;
+let warrantyPrice = 0;
 // prices array matches order of accessory names below
-const prices = [499,99,279,99,299,0,0,0,0,499,365,499,999];
+const prices = [599,99,360,99,299,0,0,0,0,499,375,525,999];
 let quantities = Array(prices.length).fill(0);
 let gameDrivePrice = 0;
 let gameDriveText = 'No Game Drive';
@@ -418,8 +426,11 @@ quantities[10]=1;
 
 
 /* ------------------ HELPERS ------------------ */
-function changeWarranty(val) {
-  warranty = Math.max(2, warranty + val);
+function changeWarrantyPlan() {
+  const select = document.getElementById('warrantyPlan');
+  const option = select.options[select.selectedIndex];
+  warranty = Number(option.value) || 1;
+  warrantyPrice = Number(option.dataset.price) || 0;
   document.getElementById('warranty').innerText = warranty;
   updateTotal();
 }
@@ -470,7 +481,7 @@ function updateTotal() {
   const basePriceDisplay = document.getElementById('basePriceDisplay');
   if (basePriceDisplay) basePriceDisplay.innerText = '₹' + basePrice;
 
-  let total = basePrice + Math.max(0,(warranty - 2))*300 + gameDrivePrice;
+  let total = basePrice + warrantyPrice + gameDrivePrice;
   for (let i = 0; i < prices.length; i++) {
     total += (Number(quantities[i]||0) * Number(prices[i]||0));
   }
@@ -544,7 +555,7 @@ for (let i = 0; i < quantities.length; i++) {
 
   const colorSel=document.getElementById('ps2Color').value;
   const base = colorData[colorSel].price;
-  let grandTotal = base + Math.max(0,(warranty - 2))*300 + accessoriesTotal + gameDrivePrice;
+  let grandTotal = base + warrantyPrice + accessoriesTotal;
   const payment = document.querySelector('input[name="paymentMode"]:checked')?.value;
   if (payment === 'prepaid') grandTotal += Number(document.getElementById('courierService')?.value || 299);
   else grandTotal += 599;
@@ -624,7 +635,8 @@ function sendOrderToWhatsApp() {
     msg += "Game Drive: " + packType + " , " + cleanText + "\n";
   }
 
-  msg += "Warranty: " + warranty + " months - ₹" + Math.max(0,(warranty - 2))*300 + "\n";
+  msg += "Console Warranty: " + (warranty === 12 ? "1 Year" : warranty + " Month" + (warranty > 1 ? "s" : "")) + " - ₹" + warrantyPrice + "\n";
+  msg += "Warranty Coverage: Console only; accessories are not covered.\n";
 
   const names = ["Adapter","AV Cable","HDMI Converter","HDMI Normal","HDMI Best","USB64","USB128","USB256","USB500","FMCB","Wired","Wireless","Battery"];
 
@@ -655,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.innerText = quantities[i];
   }
   updateColorDisplay();
-  updateTotal();
+  changeWarrantyPlan();
 });
 function setColor(c){document.getElementById('ps2Color').value=c;updateColorDisplay();updateTotal();}
 function openImg(s){document.getElementById("modalImg").src=s;document.getElementById("imgModal").style.display="flex";}function closeImg(){document.getElementById("imgModal").style.display="none";}</script>
