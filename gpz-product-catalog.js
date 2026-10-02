@@ -1,11 +1,5 @@
 window.GPZ_PRODUCT_CATALOG = [
   {
-    "name": "${d.storage} USB for PS2 — Top ${d.count} Games",
-    "price": 179,
-    "weight": 0,
-    "size": ""
-  },
-  {
     "name": "10 Core Wire (Per Meter)",
     "price": 50,
     "weight": 0,
@@ -36,16 +30,11 @@ window.GPZ_PRODUCT_CATALOG = [
     "size": ""
   },
   {
-    "name": "32GB USB for PS2 with Arcade Games",
-    "price": 549,
-    "weight": 0,
-    "size": ""
-  },
-  {
     "name": "AA/AAA 4-Slot Battery Charger",
     "price": 399,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/charger.png"
   },
   {
     "name": "AL02 RGB Mobile Phone Cooler",
@@ -57,7 +46,8 @@ window.GPZ_PRODUCT_CATALOG = [
     "name": "AV Cable for PS2",
     "price": 99,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/av-standard.jpeg"
   },
   {
     "name": "AV Component Connector",
@@ -73,7 +63,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "Best AV Cable for PS2",
-    "price": 179,
+    "price": 149,
     "weight": 0,
     "size": ""
   },
@@ -133,13 +123,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "FMCB Memory Card — PS2 Fat",
-    "price": 600,
+    "price": 499,
     "weight": 0,
     "size": ""
   },
   {
     "name": "FMCB Memory Card — PS2 Slim 7xxxx",
-    "price": 600,
+    "price": 499,
     "weight": 0,
     "size": ""
   },
@@ -175,13 +165,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "HDMI Converter for PS2",
-    "price": 319,
+    "price": 330,
     "weight": 0,
     "size": ""
   },
   {
     "name": "Honeycom HDMI 2.0 Male to Male Cable — 2.2 Meter",
-    "price": 200,
+    "price": 159,
     "weight": 0,
     "size": ""
   },
@@ -231,13 +221,15 @@ window.GPZ_PRODUCT_CATALOG = [
     "name": "Panasonic AAA Rechargeable Cells (2 Pack)",
     "price": 350,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/panasonic-2.png"
   },
   {
     "name": "Panasonic AAA Rechargeable Cells (4 Pack)",
     "price": 700,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/panasonic-4.png"
   },
   {
     "name": "Plain Black Shock-Proof HDD Carry Cover",
@@ -265,13 +257,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PS2 8MB FMCB Memory Card — PS2 Fat 3XXXX / 5XXXX",
-    "price": 600,
+    "price": 499,
     "weight": 0,
     "size": ""
   },
   {
     "name": "PS2 8MB FMCB Memory Card — PS2 Slim 7XXXX",
-    "price": 600,
+    "price": 499,
     "weight": 0,
     "size": ""
   },
@@ -289,19 +281,19 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PS2 Console Black",
-    "price": 6800,
+    "price": 8499,
     "weight": 0,
     "size": ""
   },
   {
     "name": "PS2 Console Silver",
-    "price": 7800,
+    "price": 9499,
     "weight": 0,
     "size": ""
   },
   {
     "name": "PS2 Console White",
-    "price": 7300,
+    "price": 8999,
     "weight": 0,
     "size": ""
   },
@@ -318,16 +310,18 @@ window.GPZ_PRODUCT_CATALOG = [
     "size": ""
   },
   {
-    "name": "PS2 Wired Controller (Replica)",
+    "name": "PS2 Wired Gamepad Black",
     "price": 375,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/wired-black.png"
   },
   {
     "name": "PS2 Wireless Controller",
     "price": 499,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/wireless.jpeg"
   },
   {
     "name": "PS3 Controller (Replica)",
@@ -441,7 +435,8 @@ window.GPZ_PRODUCT_CATALOG = [
     "name": "Simpex AA Rechargeable Cells (4 Pack)",
     "price": 550,
     "weight": 0,
-    "size": ""
+    "size": "",
+    "image": "assets/simpex-4.png"
   },
   {
     "name": "SL-14 Rechargeable Battery Mobile Phone Cooler",
@@ -536,6 +531,99 @@ window.GPZ_PRODUCT_CATALOG = [
   {
     "name": "Zebronics ZEB-CSH-01 2.5-inch SATA HDD / SSD Enclosure",
     "price": 380,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "PS2 8MB Memory Card with OPL Only",
+    "price": 499,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "PS2 Wired Gamepad Crystal White",
+    "price": 385,
+    "weight": 0,
+    "size": "",
+    "image": "assets/wired-white.png"
+  },
+  {
+    "name": "PS2 Wired Gamepad Crystal Red",
+    "price": 385,
+    "weight": 0,
+    "size": "",
+    "image": "assets/wired-red.png"
+  },
+  {
+    "name": "PS2 Wired Gamepad Crystal Blue",
+    "price": 385,
+    "weight": 0,
+    "size": "",
+    "image": "assets/wired-blue.png"
+  },
+  {
+    "name": "HDMI Best 1.5m Cable",
+    "price": 299,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "32GB Generic Card Reader USB USB for PS2 — Top 13 Games",
+    "price": 625,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "32GB Generic Card Reader USB USB for PS2 — Optional Games",
+    "price": 650,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "64GB PD 3.0 USB for PS2 — Top 23 Games",
+    "price": 1150,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "64GB PD 3.0 USB for PS2 — Optional Games",
+    "price": 1200,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "128GB PD 3.0 USB for PS2 — Top 44 Games",
+    "price": 2100,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "128GB PD 3.0 USB for PS2 — Optional Games",
+    "price": 2200,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "256GB SSD USB for PS2 — Top 75 Games",
+    "price": 5200,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "256GB SSD USB for PS2 — Optional Games",
+    "price": 5400,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "500GB HDD USB for PS2 — Top 180 Games",
+    "price": 5250,
+    "weight": 0,
+    "size": ""
+  },
+  {
+    "name": "500GB HDD USB for PS2 — Optional Games",
+    "price": 5650,
     "weight": 0,
     "size": ""
   }

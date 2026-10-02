@@ -138,9 +138,9 @@ body { padding-bottom: 160px; }
 }
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-<style>#modelPreview{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}#modelPreview img{width:90px;height:60px;object-fit:cover;border:2px solid #ccc;border-radius:6px;cursor:pointer}#imgModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center}#imgModal img{max-width:95%;max-height:90%}#closeModal{position:absolute;top:15px;right:20px;font-size:34px;color:#fff;cursor:pointer;color:#fff}</style></head>
+<style>#modelPreview{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}#modelPreview img{width:90px;height:60px;object-fit:cover;border:2px solid #ccc;border-radius:6px;cursor:pointer}#imgModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;align-items:center;justify-content:center}#imgModal img{max-width:95%;max-height:90%}#closeModal{position:absolute;top:15px;right:20px;font-size:34px;color:#fff;cursor:pointer;color:#fff}</style><style>.product-photo{width:110px;height:110px;object-fit:contain;cursor:pointer;border-radius:8px;margin-right:12px;background:#fff}.accessory{flex-wrap:wrap;gap:8px}</style></head>
 <body>
-<header><a href="https://www.gamesplanet.shop" style="color: white; text-decoration: none; font-weight: bold; font-family: sans-serif;" target="_blank">GAMES PLANET</a></header>
+<header><img src="assets/gp-logo.png" alt="Games Planet" style="width:54px;height:54px;vertical-align:middle;border-radius:50%;margin-right:12px"><a href="https://www.gamesplanet.shop" style="color: white; text-decoration: none; font-weight: bold; font-family: sans-serif;" target="_blank">GAMES PLANET</a></header>
 <div class="container">
 <h1 style="text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 1rem; color: #131921;">PlayStation 2 Slim (Renewed)</h1>
 <div class="price-section">
@@ -153,9 +153,9 @@ body { padding-bottom: 160px; }
 </div>
 <input type="hidden" id="ps2Color" value="black">
 <div id="imgModal" onclick="closeImg()"><span id="closeModal">&times;</span><img id="modalImg"></div><h2 style="margin-top:10px">
-      Price: <s id="mrpValue">₹7999</s>
-<span id="basePriceDisplay">₹6800</span>
-<span id="discountPercent" style="color:#27ae60;font-weight:bold;">(15% OFF)</span>
+      Price: <s id="mrpValue" style="display:none">₹7999</s>
+<span id="basePriceDisplay">₹8499</span>
+<span id="discountPercent" style="display:none;color:#27ae60;font-weight:bold;">(15% OFF)</span>
 </h2>
 <div class="accessory">
 <label>Console Warranty:</label>
@@ -175,10 +175,10 @@ body { padding-bottom: 160px; }
 <div class="accessory">Power Adapter with Cable - ₹599
         <div><button onclick="changeQty(0, -1)">-</button> <span id="qty-0">0</span> <button onclick="changeQty(0, 1)">+</button></div>
 </div>
-<div class="accessory">AV Cable - ₹99
+<div class="accessory"><img class="product-photo" src="assets/av-standard.jpeg" alt="AV Cable Standard" onclick="openImg(this.src)">AV Cable Standard - ₹99
         <div><button onclick="changeQty(1, -1)">-</button> <span id="qty-1">0</span> <button onclick="changeQty(1, 1)">+</button></div>
 </div>
-<div class="accessory">HDMI Converter - ₹360
+<div class="accessory">HDMI Converter - ₹330
         <div><button onclick="changeQty(2, -1)">-</button> <span id="qty-2">0</span> <button onclick="changeQty(2, 1)">+</button></div>
 </div>
 <div class="accessory">HDMI Normal 1.5m Cable - ₹99
@@ -188,10 +188,12 @@ body { padding-bottom: 160px; }
         <div><button onclick="changeQty(4, -1)">-</button> <span id="qty-4">0</span> <button onclick="changeQty(4, 1)">+</button></div>
 </div>
 </div>
-<h3>Game Drive (USB)</h3>
+<h3>Additional Cables</h3><div class="category-box"><div class="accessory">AV Cable High Quality - ₹149<div><button onclick="changeQty(13, -1)">-</button> <span id="qty-13">0</span> <button onclick="changeQty(13, 1)">+</button></div></div>
+<div class="accessory">HDMI Normal 2.2m Cable - ₹159<div><button onclick="changeQty(14, -1)">-</button> <span id="qty-14">0</span> <button onclick="changeQty(14, 1)">+</button></div></div>
+</div><h3>Game Drive (USB)</h3>
 <div class="category-box">
 <label><b>🎮 Select Game Drive</b></label>
-<select id="gameDrive" onchange="selectGameDrive()" style="width:100%;padding:10px;border-radius:8px;"><option selected="selected" value="0">❌ No Game Drive Required</option><optgroup label="🔥 Top Games Pack"><option value="1199">🔥 64GB • 21 Games • ₹1199</option><option value="2299">🔥 128GB • 41 Games • ₹2299</option><option value="6499">🔥 256GB SSD • 71 Games • ₹6499</option><option value="6999">🔥 500GB HDD • 175 Games • ₹6999</option><option value="10999">🔥 500GB SSD • 175 Games • ₹10999</option></optgroup><optgroup label="🟡 Optional Games Pack"><option value="1299">🟡 64GB • Optional • ₹1299</option><option value="2499">🟡 128GB • Optional • ₹2499</option><option value="6799">🟡 256GB SSD • Optional • ₹6799</option><option value="7299">🟡 500GB HDD • Optional • ₹7299</option><option value="11499">🟡 500GB SSD • Optional • ₹11499</option></optgroup></select>
+<select id="gameDrive" onchange="selectGameDrive()" style="width:100%;padding:10px;border-radius:8px;"><option selected="selected" value="0">❌ No Game Drive Required</option><optgroup label="🔥 Top Games Pack"><option value="625">🔥 32GB Generic Card Reader USB • 13 Games • ₹625</option><option value="1150">🔥 64GB PD 3.0 • 23 Games • ₹1150</option><option value="2100">🔥 128GB PD 3.0 • 44 Games • ₹2100</option><option value="5200">🔥 256GB SSD • 75 Games • ₹5200</option><option value="5250">🔥 500GB HDD • 180 Games • ₹5250</option></optgroup><optgroup label="🟡 Optional Games Pack"><option value="650">🟡 32GB Generic Card Reader USB • Optional Games • ₹650</option><option value="1200">🟡 64GB PD 3.0 • Optional Games • ₹1200</option><option value="2200">🟡 128GB PD 3.0 • Optional Games • ₹2200</option><option value="5400">🟡 256GB SSD • Optional Games • ₹5400</option><option value="5650">🟡 500GB HDD • Optional Games • ₹5650</option></optgroup></select>
 </div>
 <div style="text-align:center;margin:15px 0">
 <p><a target="_blank" href="https://youtu.be/xGR0vUM1-Jw?si=PBZwUaUNxipdjl1l"><button style="width:100%">🔥 Top Game List Video</button></a></p>
@@ -203,19 +205,27 @@ body { padding-bottom: 160px; }
 <div class="accessory">MEMORY CARD 8MB FMCB - ₹499
         <div><button onclick="changeQty(9, -1)">-</button> <span id="qty-9">0</span> <button onclick="changeQty(9, 1)">+</button></div>
 </div>
-<div class="accessory">Wired Gamepad - ₹375
+<div class="accessory"><img class="product-photo" src="assets/wired-black.png" alt="Wired Gamepad Black" onclick="openImg(this.src)">Wired Gamepad Black - ₹375
         <div><button onclick="changeQty(10, -1)">-</button> <span id="qty-10">0</span> <button onclick="changeQty(10, 1)">+</button></div>
 </div>
-<div class="accessory">Wireless Gamepad - ₹525
+<div class="accessory"><img class="product-photo" src="assets/wireless.jpeg" alt="Wireless Gamepad" onclick="openImg(this.src)">Wireless Gamepad - ₹525
         <div><button onclick="changeQty(11, -1)">-</button> <span id="qty-11">0</span> <button onclick="changeQty(11, 1)">+</button></div>
 </div>
 <!-- NEW ITEM INSERTED HERE -->
-<div class="accessory">4 AAA Rechargeable Batteries + Charger - ₹999
+<div class="accessory"><img class="product-photo" src="assets/panasonic-4.png" alt="4 AAA Rechargeable Batteries + Charger" onclick="openImg(this.src)">4 AAA Rechargeable Batteries + Charger - ₹999
         <div><button onclick="changeQty(12, -1)">-</button> <span id="qty-12">0</span> <button onclick="changeQty(12, 1)">+</button></div>
 </div>
 </div>
 </div>
-<!-- Added Accessories Summary -->
+<h3>More Controllers, Cards &amp; Rechargeable Cells</h3><div class="category-box"><div class="accessory">8MB Memory Card with OPL Only - ₹499<div><button onclick="changeQty(15, -1)">-</button> <span id="qty-15">0</span> <button onclick="changeQty(15, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/wired-white.png" alt="Wired Gamepad Crystal White" onclick="openImg(this.src)">Wired Gamepad Crystal White - ₹385<div><button onclick="changeQty(16, -1)">-</button> <span id="qty-16">0</span> <button onclick="changeQty(16, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/wired-red.png" alt="Wired Gamepad Crystal Red" onclick="openImg(this.src)">Wired Gamepad Crystal Red - ₹385<div><button onclick="changeQty(17, -1)">-</button> <span id="qty-17">0</span> <button onclick="changeQty(17, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/wired-blue.png" alt="Wired Gamepad Crystal Blue" onclick="openImg(this.src)">Wired Gamepad Crystal Blue - ₹385<div><button onclick="changeQty(18, -1)">-</button> <span id="qty-18">0</span> <button onclick="changeQty(18, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/charger.png" alt="AA/AAA 4-Slot Cell Charger" onclick="openImg(this.src)">AA/AAA 4-Slot Cell Charger - ₹399<div><button onclick="changeQty(19, -1)">-</button> <span id="qty-19">0</span> <button onclick="changeQty(19, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/panasonic-4.png" alt="Panasonic AAA Rechargeable Cells (4 Pack)" onclick="openImg(this.src)">Panasonic AAA Rechargeable Cells (4 Pack) - ₹700<div><button onclick="changeQty(20, -1)">-</button> <span id="qty-20">0</span> <button onclick="changeQty(20, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/panasonic-2.png" alt="Panasonic AAA Rechargeable Cells (2 Pack)" onclick="openImg(this.src)">Panasonic AAA Rechargeable Cells (2 Pack) - ₹350<div><button onclick="changeQty(21, -1)">-</button> <span id="qty-21">0</span> <button onclick="changeQty(21, 1)">+</button></div></div>
+<div class="accessory"><img class="product-photo" src="assets/simpex-4.png" alt="Simpex AA Rechargeable Cells (4 Pack)" onclick="openImg(this.src)">Simpex AA Rechargeable Cells (4 Pack) - ₹550<div><button onclick="changeQty(22, -1)">-</button> <span id="qty-22">0</span> <button onclick="changeQty(22, 1)">+</button></div></div>
+</div><!-- Added Accessories Summary -->
 <div style="margin: 30px auto 10px; max-width: 600px; background: #fff; padding: 15px 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
 <h3 style="margin-bottom: 10px; text-align: center; font-size: 18px; color: #131921;">Added Accessories</h3>
 <ul id="accessorySummaryList" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
@@ -392,9 +402,9 @@ body { padding-bottom: 160px; }
 <script>
 /* ------------------ COLOR DATA + DISPLAY ------------------ */
 const colorData = {
-  black: { price: 6800, mrp: 7999 },
-  white: { price: 7300, mrp: 8499 },
-  silver: { price: 7800, mrp: 8999 }
+  black: { price: 8499, mrp: 7999 },
+  white: { price: 8999, mrp: 8499 },
+  silver: { price: 9499, mrp: 8999 }
 };
 
 function updateColorDisplay() {
@@ -414,7 +424,7 @@ function updateColorDisplay() {
 let warranty = 1;
 let warrantyPrice = 0;
 // prices array matches order of accessory names below
-const prices = [599,99,360,99,299,0,0,0,0,499,375,525,999];
+const prices = [599,99,330,99,299,0,0,0,0,499,375,525,999,149,159,499,385,385,385,399,700,350,550];
 let quantities = Array(prices.length).fill(0);
 let gameDrivePrice = 0;
 let gameDriveText = 'No Game Drive';
@@ -444,7 +454,7 @@ function changeQty(index, delta) {
 
 /* accessory summaries */
 function updateAccessorySummary() {
-  const names = ["Adapter","AV Cable","HDMI Converter","HDMI Normal","HDMI Best","USB64","USB128","USB256","USB500","FMCB","Wired","Wireless","Battery"];
+  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Memory Card with FMCB", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
   const summaryList = document.getElementById('accessorySummaryList');
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   const totalItemsSpan = document.getElementById('totalItems');
@@ -521,7 +531,7 @@ function updateTopSummary() {
   let totalItems = 1;
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   if (summaryTopList) summaryTopList.innerHTML = '';
-  const names = ["Adapter","AV Cable","HDMI Converter","HDMI Normal","HDMI Best","USB64","USB128","USB256","USB500","FMCB","Wired","Wireless","Battery"];
+  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Memory Card with FMCB", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
 
   const ps2Item = document.createElement('li');
   ps2Item.innerText = "PS2 Slim x1";
@@ -638,7 +648,7 @@ function sendOrderToWhatsApp() {
   msg += "Console Warranty: " + (warranty === 12 ? "1 Year" : warranty + " Month" + (warranty > 1 ? "s" : "")) + " - ₹" + warrantyPrice + "\n";
   msg += "Warranty Coverage: Console only; accessories are not covered.\n";
 
-  const names = ["Adapter","AV Cable","HDMI Converter","HDMI Normal","HDMI Best","USB64","USB128","USB256","USB500","FMCB","Wired","Wireless","Battery"];
+  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Memory Card with FMCB", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
 
   for (let i = 0; i < quantities.length; i++) {
     if (quantities[i] > 0) {
