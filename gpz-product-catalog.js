@@ -38,7 +38,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "AL02 RGB Mobile Phone Cooler",
-    "price": 749,
+    "price": 1049,
     "weight": 0,
     "size": ""
   },
@@ -63,13 +63,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "Best AV Cable for PS2",
-    "price": 149,
+    "price": 179,
     "weight": 0,
     "size": ""
   },
   {
     "name": "Black Switch Button",
-    "price": 15,
+    "price": 20,
     "weight": 0,
     "size": ""
   },
@@ -93,13 +93,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "Coin Drop Switch Button",
-    "price": 45,
+    "price": 60,
     "weight": 0,
     "size": ""
   },
   {
     "name": "Coin Packet",
-    "price": 210,
+    "price": 220,
     "weight": 0,
     "size": ""
   },
@@ -111,13 +111,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "DY26 Mobile Phone Cooler",
-    "price": 631,
+    "price": 883,
     "weight": 0,
     "size": ""
   },
   {
     "name": "DY58 / SL09 Dual Semiconductor Mobile Phone Cooler",
-    "price": 1020,
+    "price": 1428,
     "weight": 0,
     "size": ""
   },
@@ -165,19 +165,19 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "HDMI Converter for PS2",
-    "price": 330,
+    "price": 340,
     "weight": 0,
     "size": ""
   },
   {
     "name": "Honeycom HDMI 2.0 Male to Male Cable — 2.2 Meter",
-    "price": 159,
+    "price": 200,
     "weight": 0,
     "size": ""
   },
   {
     "name": "L01 Mobile Phone Cooler",
-    "price": 666,
+    "price": 932,
     "weight": 0,
     "size": ""
   },
@@ -207,7 +207,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "MD Switch Button",
-    "price": 50,
+    "price": 60,
     "weight": 0,
     "size": ""
   },
@@ -257,13 +257,13 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PS2 8MB FMCB Memory Card — PS2 Fat 3XXXX / 5XXXX",
-    "price": 499,
+    "price": 600,
     "weight": 0,
     "size": ""
   },
   {
     "name": "PS2 8MB FMCB Memory Card — PS2 Slim 7XXXX",
-    "price": 499,
+    "price": 600,
     "weight": 0,
     "size": ""
   },
@@ -281,19 +281,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PS2 Console Black",
-    "price": 8499,
-    "weight": 0,
-    "size": ""
-  },
-  {
-    "name": "PS2 Console Silver",
-    "price": 9499,
-    "weight": 0,
-    "size": ""
-  },
-  {
-    "name": "PS2 Console White",
-    "price": 8999,
+    "price": 8500,
     "weight": 0,
     "size": ""
   },
@@ -318,14 +306,14 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PS2 Wireless Controller",
-    "price": 499,
+    "price": 525,
     "weight": 0,
     "size": "",
     "image": "assets/wireless.jpeg"
   },
   {
     "name": "PS3 Controller (Replica)",
-    "price": 600,
+    "price": 620,
     "weight": 0,
     "size": ""
   },
@@ -361,7 +349,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "Push Button",
-    "price": 32,
+    "price": 35,
     "weight": 0,
     "size": ""
   },
@@ -373,7 +361,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "PXN V3 Pro Steering Wheel and Pedal Set",
-    "price": 4999,
+    "price": 6380,
     "weight": 0,
     "size": ""
   },
@@ -409,7 +397,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "Rasila Handle (Without Switch)",
-    "price": 200,
+    "price": 210,
     "weight": 0,
     "size": ""
   },
@@ -440,49 +428,49 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "SL-14 Rechargeable Battery Mobile Phone Cooler",
-    "price": 1221,
+    "price": 1709,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-16 Semiconductor Mobile Phone Cooler",
-    "price": 690,
+    "price": 966,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-20 Mobile Phone Cooler",
-    "price": 1221,
+    "price": 1709,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-21 Semiconductor Mobile Phone Cooler",
-    "price": 1162,
+    "price": 1627,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-22 Dual-Fan Mobile Phone Cooler",
-    "price": 1162,
+    "price": 1627,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-25 15W Semiconductor Mobile Phone Cooler",
-    "price": 985,
+    "price": 1379,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL-31 Compact Mobile Phone Cooler",
-    "price": 690,
+    "price": 966,
     "weight": 0,
     "size": ""
   },
   {
     "name": "SL01 Mobile Phone Cooler",
-    "price": 690,
+    "price": 966,
     "weight": 0,
     "size": ""
   },
@@ -563,7 +551,7 @@ window.GPZ_PRODUCT_CATALOG = [
   },
   {
     "name": "HDMI Best 1.5m Cable",
-    "price": 299,
+    "price": 350,
     "weight": 0,
     "size": ""
   },
