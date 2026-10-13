@@ -662,5 +662,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function setColor(c){if(c!=='black')return;document.getElementById('ps2Color').value=c;updateColorDisplay();updateTotal();}
 function openImg(s){document.getElementById("modalImg").src=s;document.getElementById("imgModal").style.display="flex";}function closeImg(){document.getElementById("imgModal").style.display="none";}</script>
+<script>
+/* Group the existing selections without changing prices or quantity handlers. */
+(function(){
+ const anchor=document.querySelector('.accessory-section');
+ if(!anchor)return;
+ const included=document.createElement('section');included.className='ps2-included';
+ included.innerHTML='<h3>Included / पहले से चुना हुआ सामान</h3><p class="setup-help">ये सामान quantity 1 के साथ चुना हुआ है। चाहें तो quantity बदल सकते हैं। Console का ₹8,500 रेट अलग है।</p><div class="category-box"></div>';
+ const optional=document.createElement('section');optional.className='ps2-optional';optional.innerHTML='<h3>Optional / अतिरिक्त सामान</h3><p class="setup-help">जो चाहिए, वही जोड़ें। Game drive और बाकी accessories अपनी ज़रूरत के हिसाब से चुनें।</p>';
+ anchor.before(included,optional);
+ const box=included.querySelector('.category-box');
+ for(const index of [0,1,9,10]){
+  const count=document.getElementById('qty-'+index);
+  const row=count?.closest('.accessory');
+  if(row)box.append(row);
+ }
+ const categories=Array.from(document.querySelectorAll('.category-box')).filter(x=>x!==box);
+ for(const group of categories){
+  if(!group.querySelector('[onclick*="changeQty"],#gameDrive'))continue;
+  const heading=group.previousElementSibling;
+  if(heading?.tagName==='H3')optional.append(heading);
+  optional.append(group);
+ }
+ for(const link of Array.from(anchor.querySelectorAll('a'))){
+  if(link.href.includes('youtu')||link.href.includes('gameselector')){
+   const row=link.closest('p');if(row)optional.append(row);
+  }
+ }
+ if(!anchor.querySelector('input,select,button'))anchor.remove();
+ const style=document.createElement('style');style.textContent='.setup-help{font-size:13px;line-height:1.6;color:#56657b;margin:0 0 14px}.ps2-included>.category-box{border-color:#9cc9ad;background:#f9fdfb}.ps2-included>h3,.ps2-optional>h3{font-size:21px!important;border-bottom:0!important;margin-top:24px!important}.ps2-optional>h3:not(:first-child){font-size:16px!important}.ps2-optional>p a{display:block}.ps2-optional>p button{width:100%}';document.head.append(style);
+})();
+</script>
 </body>
 </html>
