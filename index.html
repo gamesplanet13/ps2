@@ -166,7 +166,6 @@ body { padding-bottom: 160px; }
 <div id="imgModal" onclick="closeImg()"><span id="closeModal">×</span><img id="modalImg"/></div><h2 style="margin-top:10px">
       Price: 
 <span id="basePriceDisplay">₹8500</span>
-
 </h2>
 <div class="accessory">
 <label>Console Warranty:</label>
@@ -219,100 +218,8 @@ body { padding-bottom: 160px; }
 <div class="accessory"><img alt="Panasonic AAA Rechargeable Cells (2 Pack)" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="assets/panasonic-2.png"/><span class="accessory-name">Panasonic AAA Rechargeable Cells (2 Pack) - ₹350</span><div class="quantity-controls"><button aria-label="Remove Panasonic AAA Rechargeable Cells (2 Pack)" onclick="changeQty(21, -1)" type="button">-</button> <span id="qty-21">0</span> <button aria-label="Add Panasonic AAA Rechargeable Cells (2 Pack)" onclick="changeQty(21, 1)" type="button">+</button></div></div>
 <div class="accessory"><img alt="Simpex AA Rechargeable Cells (4 Pack)" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="assets/simpex-4.png"/><span class="accessory-name">Simpex AA Rechargeable Cells (4 Pack) - ₹550</span><div class="quantity-controls"><button aria-label="Remove Simpex AA Rechargeable Cells (4 Pack)" onclick="changeQty(22, -1)" type="button">-</button> <span id="qty-22">0</span> <button aria-label="Add Simpex AA Rechargeable Cells (4 Pack)" onclick="changeQty(22, 1)" type="button">+</button></div></div>
 </div><!-- Added Accessories Summary -->
-<div style="margin: 30px auto 10px; max-width: 600px; background: #fff; padding: 15px 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-<h3 style="margin-bottom: 10px; text-align: center; font-size: 18px; color: #131921;">Added Accessories</h3>
-<ul id="accessorySummaryList" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
-<div style="text-align: center; font-weight: bold;">Total Items: <span id="totalItems">0</span></div>
-</div>
+<section id="ps2CartPreview"></section>
 <!-- Customer Form -->
-<div style="margin: 30px auto; padding: 25px; max-width: 600px; background: #fefefe; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-<h3 style="margin-bottom: 20px; text-align: center;">Customer Details (Add your details correctly)</h3>
-<form id="customerForm">
-<input name="name" placeholder="Name *" required="" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-<input name="mobile" pattern="[0-9]{10}" placeholder="Mobile *" required="" style="width: 100%; padding: 10px; margin-bottom: 15px;" title="Enter 10-digit mobile number" type="tel"/>
-<input name="alt_mobile" pattern="[0-9]{10}" placeholder="Alt Mobile *" required="" style="width: 100%; padding: 10px; margin-bottom: 15px;" title="Enter 10-digit mobile number" type="tel"/>
-<input name="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="email"/>
-<textarea name="address" placeholder="Address *" required="" style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea>
-<input name="landmark" placeholder="Landmark" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-<input name="pincode" placeholder="Pincode *" required="" style="width: 100%; padding: 10px; margin-bottom: 15px;" type="text"/>
-<input name="city" placeholder="City *" required="" style="width: 100%; padding: 10px; margin-bottom: 10px;" type="text"/>
-</form>
-</div>
-<div style="margin: 10px auto 20px; text-align: center;">
-<div style="display: inline-block; background: #e8f5e9; color: #2e7d32; font-weight: bold; font-size: 16px; padding: 10px 20px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
-      After entering customer details, now pay via UPI
-    </div>
-</div>
-<!-- Order Summary Top -->
-<div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #e8f5e9; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-<h3 style="text-align: center; margin-bottom: 15px; color: #2e7d32;">Your Order Summary</h3>
-<ul id="accessorySummaryListTop" style="font-size: 14px; color: #333; padding-left: 20px; margin-bottom: 10px;"></ul>
-<div><strong>Console Warranty:</strong> <span id="topWarranty">1 month</span></div>
-<div><strong>Total Items:</strong> <span id="topTotalItems">0</span></div>
-<div><strong>Accessories Total:</strong> ₹<span id="topAccessoriesTotal">0</span></div>
-<div><strong>Grand Total:</strong> ₹<span id="topGrandTotal">6299</span></div>
-</div>
-<!-- Payment Method -->
-<div style="margin: 30px auto; padding: 20px; max-width: 600px; background: #fff7e6; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-<h3 style="text-align: center; margin-bottom: 15px;">Choose Payment Method</h3>
-<div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
-<label><input checked="" name="paymentMode" onchange="togglePaymentMode()" type="radio" value="prepaid"/> Full Payment</label>
-<label><input name="paymentMode" onchange="togglePaymentMode()" type="radio" value="cod"/> Cash on Delivery</label>
-</div>
-<div id="prepaidCourierBox" style="margin-bottom:10px;">
-<label><strong>Prepaid Courier</strong></label>
-<select id="courierService" onchange="updateTotal()" style="width:100%;padding:10px;">
-<option value="299">Trackon.in - ₹299</option>
-<option value="299">ShreeMaruti.com - ₹299</option>
-<option value="299">DTDC.in - ₹299</option>
-<option value="399">Delhivery.com - ₹399</option>
-</select>
-</div>
-<div id="codCourierBox" style="display:none;margin-bottom:10px;">
-<label><strong>COD Courier</strong></label>
-<select id="codCourier" style="width:100%;padding:10px;">
-<option value="599">Delhivery.com - ₹599</option>
-</select>
-</div>
-<div id="codDetails" style="display:none; font-size: 14px; color: #333; line-height: 1.6;">
-<p><strong>Courier Charges:</strong> ₹599 (Delhivery COD)</p>
-<p><strong>Advance to Pay Now (10%):</strong> ₹<span id="codAdvance">0</span></p>
-<p><strong>Amount to Pay on Delivery:</strong> ₹<span id="codDue">0</span></p>
-</div>
-<div id="prepaidDetails" style="display:block; font-size: 14px; color: #333; line-height: 1.6;">
-<p><strong>Prepaid Courier Charges:</strong> ₹<span id="prepaidCourierCharge">299</span></p>
-</div>
-</div>
-<div style="text-align:center; margin-top:20px;">
-<h3>Scan &amp; Pay</h3>
-<img src="Qr (1).jpg" style="width:200px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2);"/>
-</div>
-<!-- UPI Buttons -->
-<div id="upiButtonsFixed" style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        margin-top: 20px;
-    ">
-<a href="#" id="upiPaytm" style="background: #002970; color: white; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-decoration: none; width: 90%; max-width: 400px; text-align: center;" target="_blank">
-      Pay via Paytm
-    </a>
-<a href="#" id="upiGPay" style="background: #4285F4; color: white; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-decoration: none; width: 90%; max-width: 400px; text-align: center;" target="_blank">Pay via GPay</a>
-</div>
-<div style="margin: 20px auto 10px; text-align: center;">
-<div style="display: inline-block; background: #fff3e0; color: #e65100; font-weight: bold; font-size: 16px; padding: 10px 20px; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
-      After successful payment, now click on Buy Now
-    </div>
-</div>
-<div style="text-align: center; margin-top: 40px;">
-<h2 style="color: #25D366; font-weight: bold;">Order on WhatsApp</h2>
-</div>
-<div style="text-align: center; margin-top: 10px;">
-<button onclick="sendOrderToWhatsApp()" style="background-color: #25D366; color: white; font-size: 16px; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-      Send Order to WhatsApp
-    </button>
-</div>
 <div style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #ccc; font-size: 15px; line-height: 1.8; color: #333;">
 <strong>Warranty Information:</strong><br/>
     • <strong>PS2 Console:</strong> 1-month warranty included free.<br/>
@@ -364,7 +271,7 @@ body { padding-bottom: 160px; }
 <!-- container end -->
 <div id="totalSticky">
   Total: ₹<span id="stickyTotal">6299</span>
-<button onclick="document.getElementById('customerForm').scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('#customerForm input').focus({preventScroll:true})" style="margin-left:14px;background:#ffd079;color:#112031;font-weight:700;padding:10px 18px;border:0;border-radius:8px" type="button">Checkout →</button></div>
+<button onclick="ps2GoCheckout()" style="margin-left:14px;background:#ffd079;color:#112031;font-weight:700;padding:10px 18px;border:0;border-radius:8px" type="button">Checkout →</button></div>
 <div style="text-align: center; margin-top: 40px;">
 <h3>Contact Us</h3>
 <div class="contact-icons">
@@ -696,5 +603,5 @@ function openImg(s){document.getElementById("modalImg").src=s;document.getElemen
  const style=document.createElement('style');style.textContent='.setup-help{font-size:13px;line-height:1.6;color:#56657b;margin:0 0 14px}.ps2-included>.category-box{border-color:#9cc9ad;background:#f9fdfb}.ps2-included>h3,.ps2-optional>h3{font-size:21px!important;border-bottom:0!important;margin-top:24px!important}.ps2-optional>h3:not(:first-child){font-size:16px!important}.ps2-optional>p a{display:block}.ps2-optional>p button{width:100%}';document.head.append(style);
 })();
 </script>
-</body>
+<script src="ps2-checkout.js"></script></body>
 </html>
