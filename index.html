@@ -591,62 +591,65 @@ function togglePaymentMode() {
 
 /* ------------------ WhatsApp Order Builder (patched) ------------------ */
 
+function buildPS2WhatsAppMessage(formData, isCOD, orderID) {
+  const money=n=>'₹'+Number(n).toLocaleString('en-IN');
+  const value=key=>String(formData.get(key)||'').trim();
+  const names=["Power Adapter with Cable","AV Cable Standard","HDMI Converter","HDMI Normal 1.5m Cable","HDMI Best 1.5m Cable","USB64","USB128","USB256","USB500","8MB Memory Card with FMCB","Wired Gamepad Black","Wireless Gamepad","4 AAA Rechargeable Batteries + Charger","AV Cable High Quality","HDMI Normal 2.2m Cable","8MB Memory Card with OPL Only","Wired Gamepad Crystal White","Wired Gamepad Crystal Red","Wired Gamepad Crystal Blue","AA/AAA 4-Slot Cell Charger","Panasonic AAA Rechargeable Cells (4 Pack)","Panasonic AAA Rechargeable Cells (2 Pack)","Simpex AA Rechargeable Cells (4 Pack)"];
+  const items=[{name:'PS2 Slim Black Console',quantity:1,unitPrice:colorData.black.price}];
+  quantities.forEach((quantity,i)=>{if(quantity>0)items.push({name:names[i],quantity,unitPrice:prices[i]});});
+  const select=document.getElementById('gameDrive');
+  const option=select.options[select.selectedIndex];
+  if(Number(option.value)>0)items.push({name:option.text.replace(/[🔥🟡]/gu,'').replace(/\s*•\s*₹[\d,]+/g,'').trim(),quantity:1,unitPrice:Number(option.value)});
+  const warrantyLabel=(warranty===12?'1 Year':warranty+' Month'+(warranty>1?'s':''));
+  const productTotal=items.reduce((sum,item)=>sum+item.quantity*item.unitPrice,0)+warrantyPrice;
+  const courierSelect=document.getElementById('courierService');
+  const courier=isCOD?599:Number(courierSelect?.value||299);
+  const courierName=isCOD?'Delhivery.com':(courierSelect?.options[courierSelect.selectedIndex]?.text||'').replace(/\s*-\s*₹[\d,]+/,'');
+  const grandTotal=productTotal+courier;
+  const paid=isCOD?Math.max(1000,Math.ceil(grandTotal*0.1)):grandTotal;
+  const rest=grandTotal-paid;
+  const details=items.flatMap((item,i)=>[
+    (i+1)+'. '+(i===0?'PRODUCT':'ADD-ON'),
+    'Name / Variant: '+item.name,
+    'Quantity: '+item.quantity,
+    'Unit Price: '+money(item.unitPrice),
+    'Line Total: '+money(item.unitPrice*item.quantity),
+    '────────────────────'
+  ]);
+  return [
+    isCOD?'🔴 COD Order on WhatsApp':'🟢 Prepaid Order on WhatsApp',
+    'Order ID: '+orderID,
+    'Name: '+value('name'),'Mobile: '+value('mobile'),'Alt Mobile: '+value('alt_mobile'),
+    'Email: '+value('email'),'Address: '+value('address'),'Landmark: '+value('landmark'),
+    'Pincode: '+value('pincode'),'State: '+value('state'),'District/City: '+value('city'),
+    'Post office: '+value('postoffice'),
+    'Product: PS2 Slim Black Console + Selected Accessories',
+    'Variant: Black • Console only',
+    'Base Price: '+money(colorData.black.price),
+    'Courier Company: '+courierName,
+    'Amount Paid: '+money(paid),
+    ...(isCOD?['Rest on Delivery: '+money(rest)]:[]),
+    '━━━━━━━━━━━━━━━━━━━━','🧾 COMPLETE ORDER BREAKDOWN','━━━━━━━━━━━━━━━━━━━━',
+    ...details,
+    'Console Warranty: '+warrantyLabel+' — '+money(warrantyPrice),
+    'Warranty Coverage: Console only; accessories are not covered.',
+    '━━━━━━━━━━━━━━━━━━━━','💰 PAYMENT BREAKDOWN','━━━━━━━━━━━━━━━━━━━━',
+    'Total Products: '+items.reduce((sum,item)=>sum+item.quantity,0),
+    'Products + Add-ons: '+money(productTotal-warrantyPrice),
+    'Console Warranty: +'+money(warrantyPrice),
+    'Courier Charges: +'+money(courier),
+    'Final Order Total: '+money(grandTotal),
+    'Payment Method: '+(isCOD?'Cash on Delivery':'Prepaid')
+  ].join('\n');
+}
 function sendOrderToWhatsApp() {
-  const form = document.querySelector('#customerForm');
-  const formData = new FormData(form);
-
-  const now = new Date();
-  const orderID = `${String(now.getDate()).padStart(2,'0')}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getFullYear()).toString().slice(-2)}.${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}pm`;
-
-  const isCOD = document.querySelector('input[name="paymentMode"]:checked')?.value === 'cod';
-
-  let msg = "PS2 Order\n";
-  msg += isCOD ? "COD Order\n" : "Prepaid Order\n";
-  msg += "Order ID: " + orderID + "\n\n";
-
-  formData.forEach((val, key) => {
-    const label = key.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
-    msg += label + ": " + val + "\n";
-  });
-
-  msg += "\n";
-
-  const colorValue = document.getElementById('ps2Color').value;
-  const colorMap = {black:"Black",white:"White",silver:"Silver"};
-  const colorText = colorMap[colorValue] || colorValue;
-  msg += "Console: " + colorText + "\n";
-
-  const select = document.getElementById("gameDrive");
-  const selectedOption = select.options[select.selectedIndex];
-  if(selectedOption.value==='0'){
-    msg += "Game Drive: No Game Drive\n";
-  } else {
-    const packType = (selectedOption.parentElement.label || '').replace("🔥 ","").replace("🟡 ","");
-    const cleanText = selectedOption.text.replace("🔥 ","").replace("🟡 ","");
-    msg += "Game Drive: " + packType + " , " + cleanText + "\n";
-  }
-
-  msg += "Console Warranty: " + (warranty === 12 ? "1 Year" : warranty + " Month" + (warranty > 1 ? "s" : "")) + " - ₹" + warrantyPrice + "\n";
-  msg += "Warranty Coverage: Console only; accessories are not covered.\n";
-
-  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Memory Card with FMCB", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
-
-  for (let i = 0; i < quantities.length; i++) {
-    if (quantities[i] > 0) {
-      msg += names[i] + " x" + quantities[i] + " - ₹" + (quantities[i] * prices[i]) + "\n";
-    }
-  }
-
-  if (isCOD) {
-    msg += "COD Courier Charges: ₹599\n";
-    msg += "Total: ₹" + document.getElementById('codAdvance').innerText + " (advance) + ₹" + document.getElementById('codDue').innerText + " (on delivery)";
-  } else {
-    msg += "Prepaid Courier Charges: ₹" + (document.getElementById('courierService')?.value || 299) + "\n";
-    msg += "Total: ₹" + document.getElementById('stickyTotal').innerText;
-  }
-
-  const url = "https://wa.me/917983624797?text=" + encodeURIComponent(msg);
-  window.open(url, '_blank');
+  const form=document.querySelector('#customerForm');
+  if(!form.reportValidity())return;
+  const now=new Date();
+  const orderID=now.toLocaleString('sv-SE',{timeZone:'Asia/Kolkata'}).replace(' ','_');
+  const isCOD=document.querySelector('input[name="paymentMode"]:checked')?.value==='cod';
+  const msg=buildPS2WhatsAppMessage(new FormData(form),isCOD,orderID);
+  window.open('https://wa.me/917983624797?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
 }
 
 
