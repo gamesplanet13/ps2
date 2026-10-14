@@ -1140,7 +1140,7 @@ function gpzNormalizeIncomingItem(i){
   return {
     name,product,variant,pack:String(i?.pack||""),quantity,unitPrice,
     lineTotal:Number(i?.lineTotal)||(unitPrice*quantity),
-    image:String(i?.image||""),service:!!i?.service,unitWeight,lineWeight:Number(i?.lineWeight)||(unitWeight*quantity),
+    includedControllers:Number(i?.includedControllers)||0,image:String(i?.image||""),service:!!i?.service,unitWeight,lineWeight:Number(i?.lineWeight)||(unitWeight*quantity),
     dimensions:i?.dimensions||i?.unitDimensions||i?.size||""
   };
 }
@@ -1206,7 +1206,7 @@ function ps2CodCap(kg){const n=Math.max(1,Math.ceil(kg));return n<=2?650:n===3?8
 function gpzBox(items,totalWeight){
  const manual=["actualBoxLength","actualBoxWidth","actualBoxHeight"].map(id=>Number(document.getElementById(id)?.value||0));
  if(manual.every(n=>n>0))return manual;
- const controllers=items.filter(i=>/Gamepad|Controller/i.test(i.name)).reduce((s,i)=>s+i.quantity,0);
+ const controllers=items.reduce((s,i)=>s+(i.includedControllers||(/Gamepad|Controller/i.test(i.name)?i.quantity:0)),0);
  return [35,35,10+Math.ceil(Math.max(0,controllers-2)/4)*6];
 }
 function gpzMode(){return gpzSelected("paymentMode","prepaid");}
