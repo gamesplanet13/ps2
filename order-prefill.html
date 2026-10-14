@@ -59,7 +59,7 @@
   @media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
   @media(max-width:720px){.grid2,.grid3,.choice-grid{grid-template-columns:1fr}}
 </style>
-</head>
+<style id="ps2-compact-all">header{padding:10px 14px!important}header img{width:36px!important;height:36px!important}.container{padding:10px!important;margin:8px 6px!important}.container>h1{font-size:19px!important;margin:4px 0 10px!important}.renewed-label{font-size:11px;padding:3px 7px!important;margin-bottom:6px!important}.console-card{grid-template-columns:110px minmax(0,1fr)!important;gap:12px!important;padding:12px!important}.console-card img{width:110px!important;height:85px!important}.console-card h2{font-size:17px!important;margin:8px 0!important}.console-card p{font-size:11px!important;margin:5px 0!important}.console-price{font-size:22px!important}.stock-pill{padding:3px 6px!important;font-size:10px!important}.price-section{margin-bottom:10px!important}.ps2-included>h3,.ps2-optional>h3{font-size:17px!important;margin:12px 0 6px!important}.setup-help{font-size:11px!important;margin-bottom:8px!important;line-height:1.4!important}.ps2-optional>h3:not(:first-child){font-size:14px!important;margin:12px 0 6px!important}.category-box{padding:2px 8px!important;margin-bottom:10px!important}.accessory{padding:6px 0!important}.product-photo{width:40px!important;height:40px!important}.accessory-name{font-size:11px!important}.quantity-controls button{width:30px!important;height:32px!important}.console-card~h2{display:none!important}#warrantyPlan{font-size:12px!important;padding:6px!important}.price-section>.accessory{display:flex!important;justify-content:space-between;gap:8px!important}.price-section>.accessory label{font-size:12px}.card{padding:12px!important;margin-bottom:10px!important}.breakdown-item{padding:8px!important;margin:6px 0!important}@media(max-width:340px){.console-card{grid-template-columns:85px minmax(0,1fr)!important}.console-card img{width:85px!important;height:70px!important}}</style></head>
 <body><nav style="padding:14px;background:#102137;color:white"><a href="index.html" style="color:#ffd079">← Back / Add more PS2 products</a></nav>
 <div class="wrap">
   <h1>Games Planet — Quick Order</h1>
@@ -1202,13 +1202,12 @@ function gpzAllItems(){
   });
   return items;
 }
+function ps2CodCap(kg){const n=Math.max(1,Math.ceil(kg));return n<=2?650:n===3?850:1000+(n-4)*150;}
 function gpzBox(items,totalWeight){
  const manual=["actualBoxLength","actualBoxWidth","actualBoxHeight"].map(id=>Number(document.getElementById(id)?.value||0));
  if(manual.every(n=>n>0))return manual;
- const parts=items.filter(i=>!i.service).map(i=>({d:(Array.isArray(i.dimensions)?i.dimensions:[15,10,5]).map(Number).sort((a,b)=>b-a),q:i.quantity}));
- const volume=parts.reduce((v,i)=>v+i.d.reduce((a,b)=>a*b,1)*i.q,0)*1.3;
- const boxes=[[28,22,12],[30,25,15],[32,26,20],[35,30,25],[40,35,30],[50,40,35],[60,50,40],[80,60,50]];
- return boxes.find(b=>b[0]*b[1]*b[2]>=volume&&parts.every(i=>i.d.every((n,j)=>n+2<=b[j])))||[80,60,50];
+ const controllers=items.filter(i=>/Gamepad|Controller/i.test(i.name)).reduce((s,i)=>s+i.quantity,0);
+ return [35,35,10+Math.ceil(Math.max(0,controllers-2)/4)*6];
 }
 function gpzMode(){return gpzSelected("paymentMode","prepaid");}
 function gpzSpeed(){return gpzSelected("deliverySpeed","surface");}
@@ -1285,13 +1284,16 @@ function syncCourierOptions(){
     document.getElementById("primeChoice").style.display="";
   }
   const speed=gpzSpeed();
-  const allowed=rural
+  let allowed=rural
     ? (payment==="cod"?["Delhivery.com"]:(productValue>3000?["Delhivery.com"]:["Delhivery.com","Speed Post"]))
     : (payment==="cod"?GPZ_COD:(speed==="air"?GPZ_AIR:(speed==="prime"?GPZ_PRIME:GPZ_SURFACE)));
+  if(payment==="prepaid"&&speed==="surface"&&!allowed.includes("Trackon.in"))allowed.unshift("Trackon.in");
   const select=document.getElementById("courier");
   const old=select.value;
+  const modeChanged=select.dataset.paymentMode!==payment;
+  select.dataset.paymentMode=payment;
   select.innerHTML=allowed.map(c=>`<option value="${c}">${c}</option>`).join("");
-  select.value=allowed.includes(old)?old:allowed[0];
+  select.value=payment==="prepaid"&&speed==="surface"&&modeChanged?"Trackon.in":(allowed.includes(old)?old:allowed[0]);
   const pin=(document.getElementById("pincode").value||"").trim();
   document.getElementById("courierServiceNote").textContent=/^\d{6}$/.test(pin)
     ? (rural
@@ -1347,7 +1349,7 @@ function computeTotals(){
   const volumetricKg=(boxDimensions[0]*boxDimensions[1]*boxDimensions[2])/5000;
   const courier=document.getElementById("courier").value||"Trackon.in";
   // Volumetric weight is charged only by these courier partners.
-  const usesVolumetric=GPZ_VAS_COURIERS.includes(courier);
+  const usesVolumetric=gpzMode()!=="cod"&&GPZ_VAS_COURIERS.includes(courier);
   const chargeableKg=Math.max(.5,usesVolumetric?Math.max(actualKg,volumetricKg):actualKg);
   let payment=gpzMode();
   if(payment==="cod"&&productTotal<GPZ_COD_MIN){
@@ -1363,10 +1365,14 @@ function computeTotals(){
   gpzScheduleDelhiveryQuote(courier,payment,actualKg,volumetricKg,boxDimensions);
   const liveRate=GPZ_VAS_COURIERS.includes(courier)&&gpzLiveDelhiveryQuote?.key===liveKey?Number(gpzLiveDelhiveryQuote.amount):0;
   const bigshipRate=gpzBigshipQuote?.key===liveKey?Math.ceil(Number(gpzBigshipQuote.amount||0)/10)*10:0;
-  const courierBaseCharge=bigshipRate||liveRate||gpzCourierRate(courier,speed,payment,chargeableKg);
+  const codCap=payment==="cod"?ps2CodCap(actualKg):0;
+  const invoiceIncluded=gpzInvoice();
+  const vasForCourier=charge=>Math.ceil((productTotal+charge+(invoiceIncluded?Math.ceil((productTotal+charge)*.18):0))*.02);
+  let codCourier=codCap;
+  if(codCap){while(codCourier>0&&codCourier+vasForCourier(codCourier)>codCap)codCourier--;}
+  const courierBaseCharge=codCap?codCourier:(bigshipRate||liveRate||gpzCourierRate(courier,speed,payment,chargeableKg));
   const courierGst=0;
   const courierCharge=courierBaseCharge+courierGst;
-  const invoiceIncluded=gpzInvoice();
   gpzUpdatePaymentQr(invoiceIncluded);
   // Billing order:
   // Products + add-ons + courier - discount + GST = total before VAS.
@@ -1374,14 +1380,14 @@ function computeTotals(){
   const amountBeforeGst=Math.max(0,productTotal+courierCharge-appliedDiscount);
   const productGst=invoiceIncluded?Math.ceil(amountBeforeGst*.18):0;
   const totalBeforeVas=amountBeforeGst+productGst;
-  const vasApplies=GPZ_VAS_COURIERS.includes(courier);
-  const vasCharge=vasApplies?Math.ceil(totalBeforeVas*.02):0;
+  const vasApplies=payment==="cod"||GPZ_VAS_COURIERS.includes(courier);
+  const vasCharge=codCap?codCap-courierCharge:(vasApplies?Math.ceil(totalBeforeVas*.02):0);
   const grandTotal=totalBeforeVas+vasCharge;
   const advanceAmount=payment==="cod"?Math.min(grandTotal,Math.max(500,Math.ceil(courierCharge*2))):grandTotal;
   const restAmount=payment==="cod"?Math.max(0,grandTotal-advanceAmount):0;
   gpzCurrentOrder={source:GPZ_PARAMS.get("source")==="cart"?"cart":"direct",items,productTotal,totalWeight,totalQuantity:items.reduce((s,i)=>s+i.quantity,0),packingWeight,packedWeight,
     boxDimensions,actualKg,volumetricKg,usesVolumetric,chargeableKg,paymentMode:payment,deliverySpeed:speed,courier,
-    courierBaseCharge,courierGst,courierCharge,courierRateSource:bigshipRate?"Bigship selected live rate":(liveRate?"Delhivery Live API":"Configured fallback"),gstInvoiceIncluded:invoiceIncluded,productGst,
+    courierBaseCharge,courierGst,courierCharge,courierRateSource:codCap?"PS2 COD slab — courier + VAS included":bigshipRate?"Bigship selected live rate":(liveRate?"Delhivery Live API":"Configured fallback"),gstInvoiceIncluded:invoiceIncluded,productGst,
     discountApplied:appliedDiscount,discountCode:appliedDiscount?(document.getElementById("couponCode").value||"").trim():"",
     discountedProducts,amountBeforeGst,totalBeforeVas,vasApplies,vasCharge,grandTotal,
     // User-facing Base Price is deliberately GST-exclusive and follows:
