@@ -1140,7 +1140,7 @@ function gpzNormalizeIncomingItem(i){
   return {
     name,product,variant,pack:String(i?.pack||""),quantity,unitPrice,
     lineTotal:Number(i?.lineTotal)||(unitPrice*quantity),
-    includedControllers:Number(i?.includedControllers)||0,image:String(i?.image||""),service:!!i?.service,unitWeight,lineWeight:Number(i?.lineWeight)||(unitWeight*quantity),
+    components:Array.isArray(i?.components)?i.components:[],includedControllers:Number(i?.includedControllers)||0,image:String(i?.image||""),service:!!i?.service,unitWeight,lineWeight:Number(i?.lineWeight)||(unitWeight*quantity),
     dimensions:i?.dimensions||i?.unitDimensions||i?.size||""
   };
 }
@@ -1409,6 +1409,7 @@ function computeTotals(){
   document.getElementById("couponCodNotice").style.display=payment==="cod"?"block":"none";
   document.getElementById("itemBreakdown").innerHTML=items.map((i,n)=>{
     const details=[];
+    if(i.components?.length)details.push(i.components.map(c=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0"><img src="${gpzEscape(c.image)}" alt="${gpzEscape(c.name)}" style="width:36px;height:36px;object-fit:contain" loading="lazy"><span>${gpzEscape(c.name)}<small style="display:block">Qty: ${Number(c.quantity)||1} • Included</small></span></div>`).join(""));
     if(i.image)details.push(`<img src="${gpzEscape(i.image)}" alt="${gpzEscape(i.name)}" style="width:64px;height:64px;object-fit:contain;background:white;border-radius:8px" loading="lazy">`);
     if(i.product&&i.product!==i.name) details.push(`Product: <b>${gpzEscape(i.product)}</b>`);
     if(i.variant) details.push(`Variant: <b>${gpzEscape(i.variant)}</b>`);
