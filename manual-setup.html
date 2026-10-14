@@ -202,7 +202,7 @@ body { padding-bottom: 160px; }
 </div>
 <h3>Controllers &amp; Cards</h3>
 <div class="category-box">
-<div class="accessory"><img alt="8MB Blank Memory Card + Free Software - ₹369" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="https://gamesplanet13.github.io/arcade-accessories-/images/jpeg/ps28mb.jpeg"/><span class="accessory-name">8MB Blank Memory Card + Free Software - ₹369</span><div class="quantity-controls"><button aria-label="Remove MEMORY CARD 8MB FMCB" onclick="changeQty(9, -1)" type="button">-</button> <span id="qty-9">0</span> <button aria-label="Add MEMORY CARD 8MB FMCB" onclick="changeQty(9, 1)" type="button">+</button></div></div>
+<div class="accessory"><img alt="8MB Blank Memory Card + Software ₹100 - ₹369" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="https://gamesplanet13.github.io/arcade-accessories-/images/jpeg/ps28mb.jpeg"/><span class="accessory-name">8MB Blank Memory Card + Software ₹100 - ₹369</span><div class="quantity-controls"><button aria-label="Remove MEMORY CARD 8MB FMCB" onclick="changeQty(9, -1)" type="button">-</button> <span id="qty-9">0</span> <button aria-label="Add MEMORY CARD 8MB FMCB" onclick="changeQty(9, 1)" type="button">+</button></div></div>
 <div class="accessory"><img alt="Wired Gamepad Black" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="assets/wired-black.png"/><span class="accessory-name">Wired Gamepad Black - ₹375</span><div class="quantity-controls"><button aria-label="Remove Wired Gamepad Black" onclick="changeQty(10, -1)" type="button">-</button> <span id="qty-10">0</span> <button aria-label="Add Wired Gamepad Black" onclick="changeQty(10, 1)" type="button">+</button></div></div>
 <div class="accessory"><img alt="Wireless Gamepad" class="product-photo" loading="lazy" onclick="openImg(this.src)" src="assets/wireless.jpeg"/><span class="accessory-name">Wireless Gamepad - ₹525</span><div class="quantity-controls"><button aria-label="Remove Wireless Gamepad" onclick="changeQty(11, -1)" type="button">-</button> <span id="qty-11">0</span> <button aria-label="Add Wireless Gamepad" onclick="changeQty(11, 1)" type="button">+</button></div></div>
 <!-- NEW ITEM INSERTED HERE -->
@@ -342,7 +342,7 @@ function changeQty(index, delta) {
 
 /* accessory summaries */
 function updateAccessorySummary() {
-  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Blank Memory Card + Free Software", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
+  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Blank Memory Card + Software ₹100", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
   const summaryList = document.getElementById('accessorySummaryList');
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   const totalItemsSpan = document.getElementById('totalItems');
@@ -419,7 +419,7 @@ function updateTopSummary() {
   let totalItems = 1;
   const summaryTopList = document.getElementById('accessorySummaryListTop');
   if (summaryTopList) summaryTopList.innerHTML = '';
-  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Blank Memory Card + Free Software", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
+  const names = ["Power Adapter with Cable", "AV Cable Standard", "HDMI Converter", "HDMI Normal 1.5m Cable", "HDMI Best 1.5m Cable", "USB64", "USB128", "USB256", "USB500", "8MB Blank Memory Card + Software ₹100", "Wired Gamepad Black", "Wireless Gamepad", "4 AAA Rechargeable Batteries + Charger", "AV Cable High Quality", "HDMI Normal 2.2m Cable", "8MB Memory Card with OPL Only", "Wired Gamepad Crystal White", "Wired Gamepad Crystal Red", "Wired Gamepad Crystal Blue", "AA/AAA 4-Slot Cell Charger", "Panasonic AAA Rechargeable Cells (4 Pack)", "Panasonic AAA Rechargeable Cells (2 Pack)", "Simpex AA Rechargeable Cells (4 Pack)"];
 
   const ps2Item = document.createElement('li');
   ps2Item.innerText = "PS2 Slim x1";
@@ -501,7 +501,7 @@ function togglePaymentMode() {
 function buildPS2WhatsAppMessage(formData, isCOD, orderID) {
   const money=n=>'₹'+Number(n).toLocaleString('en-IN');
   const value=key=>String(formData.get(key)||'').trim();
-  const names=["Power Adapter with Cable","AV Cable Standard","HDMI Converter","HDMI Normal 1.5m Cable","HDMI Best 1.5m Cable","USB64","USB128","USB256","USB500","8MB Blank Memory Card + Free Software","Wired Gamepad Black","Wireless Gamepad","4 AAA Rechargeable Batteries + Charger","AV Cable High Quality","HDMI Normal 2.2m Cable","8MB Memory Card with OPL Only","Wired Gamepad Crystal White","Wired Gamepad Crystal Red","Wired Gamepad Crystal Blue","AA/AAA 4-Slot Cell Charger","Panasonic AAA Rechargeable Cells (4 Pack)","Panasonic AAA Rechargeable Cells (2 Pack)","Simpex AA Rechargeable Cells (4 Pack)"];
+  const names=["Power Adapter with Cable","AV Cable Standard","HDMI Converter","HDMI Normal 1.5m Cable","HDMI Best 1.5m Cable","USB64","USB128","USB256","USB500","8MB Blank Memory Card + Software ₹100","Wired Gamepad Black","Wireless Gamepad","4 AAA Rechargeable Batteries + Charger","AV Cable High Quality","HDMI Normal 2.2m Cable","8MB Memory Card with OPL Only","Wired Gamepad Crystal White","Wired Gamepad Crystal Red","Wired Gamepad Crystal Blue","AA/AAA 4-Slot Cell Charger","Panasonic AAA Rechargeable Cells (4 Pack)","Panasonic AAA Rechargeable Cells (2 Pack)","Simpex AA Rechargeable Cells (4 Pack)"];
   const items=[{name:'PS2 Slim Black Console',quantity:1,unitPrice:colorData.black.price}];
   quantities.forEach((quantity,i)=>{if(quantity>0)items.push({name:names[i],quantity,unitPrice:prices[i]});});
   const select=document.getElementById('gameDrive');
@@ -603,5 +603,5 @@ function openImg(s){document.getElementById("modalImg").src=s;document.getElemen
  const style=document.createElement('style');style.textContent='.setup-help{font-size:13px;line-height:1.6;color:#56657b;margin:0 0 14px}.ps2-included>.category-box{border-color:#9cc9ad;background:#f9fdfb}.ps2-included>h3,.ps2-optional>h3{font-size:21px!important;border-bottom:0!important;margin-top:24px!important}.ps2-optional>h3:not(:first-child){font-size:16px!important}.ps2-optional>p a{display:block}.ps2-optional>p button{width:100%}';document.head.append(style);
 })();
 </script>
-<script src="ps2-checkout.js?v=blank-card"></script></body>
+<script src="ps2-checkout.js?v=software100-qty"></script></body>
 </html>
