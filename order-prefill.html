@@ -176,7 +176,7 @@
         <button type="button" class="ghost" onclick="applyCoupon()">Apply Coupon</button>
       </div>
     </div>
-    <div class="hint" id="couponNote">Coupon discount लागू होने पर total में अपने आप घट जाएगा।</div>
+    <div class="hint" id="couponNote">Subscribers के लिए discount code उपलब्ध है। कृपया <a href="https://wa.me/917983624797" target="_blank" rel="noopener">WhatsApp पर संपर्क करें</a>। ₹10,000 से ऊपर के products पर अधिकतम ₹200 छूट। किसी अन्य offer के साथ लागू नहीं है; पहले WhatsApp पर पुष्टि करें।</div>
   </div>
   <div class="card" id="couponCodNotice" style="display:none">
     <b>Coupon is only valid for prepaid orders, not for COD.</b>
@@ -451,43 +451,18 @@ function updatePrimeCourierAvailability(){
 /* ===== Coupon helpers & logic ===== */
 function norm(s){return (s||"").toString().trim().toUpperCase();}
 function getBaseProduct(){ return norm(document.getElementById("product").value); }
-function couponDiscountCap(){
-  const items=(typeof gpzAllItems==="function")?gpzAllItems():[];
-  const description=items.length
-    ? items.map(i=>`${i.name||""} ${i.product||""} ${i.variant||""}`).join(" ")
-    : `${document.getElementById("product").value||""} ${document.getElementById("variant").value||""}`;
-  const caps=[];
-  if(/500\s*GB/i.test(description)) caps.push(100);
-  if(/256\s*GB/i.test(description)) caps.push(60);
-  if(/128\s*GB/i.test(description)) caps.push(50);
-  if(/64\s*GB/i.test(description)) caps.push(30);
-  if(/32\s*GB/i.test(description)) caps.push(20);
-  if(/FMCB|FUNTUNA/i.test(description)) caps.push(20);
-  return caps.length?Math.max(...caps):0;
-}
-function computeCouponDiscount(subtotal){
-  const cap=couponDiscountCap();
-  return cap?Math.min(Math.round(subtotal*.05),cap):0;
-}
+function couponDiscountCap(){return 200;}
+function computeCouponDiscount(subtotal){return Number(subtotal)>10000?200:0;}
 function applyCoupon(){
-  const code=(document.getElementById("couponCode").value||"").trim().toUpperCase();
-  if(code!=="GPZ2026"){
-    discountValue=0;
-    document.getElementById("couponNote").innerText="❌ Invalid coupon";
-    computeTotals(); return;
-  }
-  if(mode!=="prepaid"){
-    discountValue=0;
-    document.getElementById("couponNote").innerText="❌ Coupon only valid on Prepaid";
-    computeTotals(); return;
-  }
-  const subtotal=getSubtotal();
-  const d=computeCouponDiscount(subtotal);
-  discountValue=Math.max(0, Math.min(d, subtotal));
-  document.getElementById("couponNote").innerText=discountValue>0
-    ? `✅ Coupon applied: -₹${discountValue}`
-    : "ℹ️ Coupon is not applicable to the selected product.";
-  computeTotals();
+ const code=(document.getElementById("couponCode").value||"").trim().toUpperCase();
+ const subtotal=gpzAllItems().reduce((sum,item)=>sum+item.lineTotal,0);
+ discountValue=0;
+ const note=document.getElementById("couponNote");
+ if(code!=="GPZ2026") note.textContent="Invalid subscriber code. कृपया WhatsApp पर संपर्क करें।";
+ else if(gpzMode()!=="prepaid") note.textContent="यह code केवल Prepaid order के लिए है।";
+ else if(subtotal<=10000) note.textContent="Discount के लिए products का total ₹10,000 से ऊपर होना चाहिए।";
+ else {discountValue=computeCouponDiscount(subtotal);note.textContent="₹200 subscriber discount applied. अन्य किसी offer के साथ लागू नहीं है। कृपया WhatsApp पर पुष्टि करें।";}
+ computeTotals();
 }
 
 /* ===== Add-ons sum & totals helpers ===== */
@@ -1357,7 +1332,7 @@ function computeTotals(){
     payment="prepaid"; mode="prepaid";
   }
   if(payment==="cod") discountValue=0;
-  const appliedDiscount=payment==="prepaid"?Math.min(productTotal,Math.max(0,Number(discountValue)||0)):0;
+  const appliedDiscount=payment==="prepaid"&&productTotal>10000&&(document.getElementById("couponCode").value||"").trim().toUpperCase()==="GPZ2026"?Math.min(200,Math.max(0,Number(discountValue)||0)):0;
   const discountedProducts=Math.max(0,productTotal-appliedDiscount);
   const speed=gpzSpeed();
   const liveKey=gpzLiveQuoteKey(courier,payment,actualKg,volumetricKg);
