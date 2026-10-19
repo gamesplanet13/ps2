@@ -7,7 +7,7 @@ ADDONS.push({i:23,name:'Extra Power Cable Only',price:129});
 let extra={};const money=n=>'₹'+n.toLocaleString('en-IN'),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function val(id){return document.getElementById(id).value}
 function makeItem(name,price,quantity,meta,service=false){return {name,product:name,quantity,unitPrice:price,lineTotal:price*quantity,unitWeight:meta.weight,lineWeight:meta.weight*quantity,dimensions:meta.dimensions,image:meta.image||'',service}}
-function completeSummary(){const storage=val('storage'),pack=val('pack'),count=Number(val('controllers')),d=PACKS[storage],w=Number(val('warranty')),wprice=({0:0,3:400,6:600,12:1000,24:1600,36:3000})[w]||0;
+function completeSummary(){const storage=val('storage'),pack=val('pack'),count=Number(val('controllers')),d=PACKS[storage],w=Number(val('warranty')),wprice=({0:0,3:400,6:600,12:1000,24:1700})[w]||0;
 const price=8500+599+369+100+99+375*count+d[pack],weight=900+340+25+70+250*count+d.weight;
 const label='PS2 Complete Setup — '+storage+' — '+(pack==='top'?'Top Games':'Optional Games')+' — '+count+' Wired Controller'+(count===2?'s':'');
 const base=makeItem(label,price,1,{weight,dimensions:[35,35,10],image:'Ps2slim7x.jpg'});base.components=completeComponents();base.includedControllers=count;base.variant='PS2 Slim Black • Adapter + Cable • 8MB Card with Software Included • AV Cable • '+count+' Wired Controller'+(count===2?'s':'')+' • '+storage+' '+(pack==='top'?'Top Games':'Optional Games');
@@ -21,7 +21,7 @@ document.getElementById('addons').innerHTML=ADDONS.map(a=>'<div class="addon"><i
 renderIncluded(s);
 try{localStorage.setItem('gp_ps2_complete_selection',JSON.stringify({storage,pack,controllers:count,warranty:val('warranty'),extra}))}catch(_){}}
 function completeCheckout(){const s=completeSummary();try{localStorage.setItem('gp_order_summary',JSON.stringify(s))}catch(_){}location.href='order-prefill.html?'+new URLSearchParams({source:'cart',cart:JSON.stringify(s.items),base:String(s.productTotal),weight:String(s.totalWeight),quantity:String(s.totalQuantity)}).toString()}
-try{const saved=JSON.parse(localStorage.getItem('gp_ps2_complete_selection')||'null');if(saved){for(const id of ['storage','pack','controllers','warranty'])if(saved[id])document.getElementById(id).value=id==='warranty'&&![0,3,6,12,24,36].includes(Number(saved[id]))?'0':saved[id];extra=saved.extra||{}}}catch(_){}
+try{const saved=JSON.parse(localStorage.getItem('gp_ps2_complete_selection')||'null');if(saved){for(const id of ['storage','pack','controllers','warranty'])if(saved[id])document.getElementById(id).value=id==='warranty'&&![0,3,6,12,24].includes(Number(saved[id]))?'0':saved[id];extra=saved.extra||{}}}catch(_){}
 renderComplete();
 
 function renderIncluded(s){
