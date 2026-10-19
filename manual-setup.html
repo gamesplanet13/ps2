@@ -168,13 +168,9 @@ body { padding-bottom: 160px; }
 <span id="basePriceDisplay">₹8500</span>
 </h2>
 <div class="accessory">
-<label>Console Warranty:</label>
+<label>Console Seller Warranty:</label><p>Inspection and verification charges of product: ₹150 compulsory, added at checkout.</p>
 <div>
-<select id="warrantyPlan" onchange="changeWarrantyPlan()" style="padding:8px;border-radius:6px;">
-<option data-price="0" value="1">1 Month Free Warranty</option>
-<option data-price="599" value="6">Total 6 Months Warranty - ₹599</option>
-<option data-price="999" value="12">Total 1 Year Warranty - ₹999</option>
-</select>
+<select id="warrantyPlan" onchange="changeWarrantyPlan()" style="padding:8px;border-radius:6px;"><option value="0" data-price="0">7 Days — Free</option><option value="3" data-price="400">3 Months — ₹400</option><option value="6" data-price="600">6 Months — ₹600</option><option value="12" data-price="1000">1 Year — ₹1,000</option><option value="24" data-price="1600">2 Years — ₹1,600</option><option value="36" data-price="3000">3 Years — ₹3,000</option></select>
 <span id="warranty" style="display:none;">1</span>
 </div>
 </div>
@@ -221,11 +217,7 @@ body { padding-bottom: 160px; }
 <section id="ps2CartPreview"></section>
 <!-- Customer Form -->
 <div style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #ccc; font-size: 15px; line-height: 1.8; color: #333;">
-<strong>Warranty Information:</strong><br/>
-    • <strong>PS2 Console:</strong> 1-month warranty included free.<br/>
-    • <strong>Extended Console Warranty:</strong> Total 6 months for ₹599, or total 1 year for ₹999.<br/>
-    • <strong>Coverage:</strong> Extended warranty applies only to the PS2 console. Accessories are not covered.<br/>
-    • <strong>Pendrive:</strong> 5-year warranty.<br/>
+<strong>PS2 Console — Seller Warranty:</strong><br>7 days free. Optional total coverage from purchase: 3 months ₹400; 6 months ₹600; 1 year ₹1,000; 2 years ₹1,600; 3 years ₹3,000.<br><strong>Covered:</strong> Manufacturing faults and normal-use console failures without accidental damage; GAMES PLANET will test and repair the covered fault.<br><strong>Not covered:</strong> Physical/accidental damage, dropping, burning, electrical burn-out, any burnt condition, tampering, opened console or removed/broken warranty seal. Warranty seal must remain intact. Applies to the console only; accessory warranties remain separate.<br>    • <strong>Pendrive:</strong> 5-year warranty.<br/>
     • <strong>HDD:</strong> 1-year warranty.<br/>
     • <strong>SSD:</strong> 2-year warranty.<br/>
     • <strong>USB Enclosure:</strong> 1-month warranty.<br/>
@@ -309,7 +301,7 @@ function updateColorDisplay() {
 }
 
 /* ------------------ BASES & PRICES ------------------ */
-let warranty = 1;
+let warranty = 0;
 let warrantyPrice = 0;
 // prices array matches order of accessory names below
 const prices = [599, 99, 340, 99, 350, 0, 0, 0, 0, 369, 375, 525, 999, 179, 200, 499, 385, 385, 385, 399, 700, 350, 550];
@@ -327,7 +319,7 @@ quantities[10]=1;
 function changeWarrantyPlan() {
   const select = document.getElementById('warrantyPlan');
   const option = select.options[select.selectedIndex];
-  warranty = Number(option.value) || 1;
+  warranty = Number(option.value) || 0;
   warrantyPrice = Number(option.dataset.price) || 0;
   document.getElementById('warranty').innerText = warranty;
   updateTotal();
@@ -445,7 +437,7 @@ for (let i = 0; i < quantities.length; i++) {
   accessoriesTotal += gameDrivePrice;
 
   const topWarranty = document.getElementById('topWarranty');
-  if (topWarranty) topWarranty.innerText = `${warranty} month${warranty > 1 ? 's' : ''}`;
+  if (topWarranty) topWarranty.innerText = warranty===0?'7 Days':`${warranty} month${warranty > 1 ? 's' : ''}`;
   const topTotalItems = document.getElementById('topTotalItems');
   if (topTotalItems) topTotalItems.innerText = totalItems;
   const topAccessoriesTotal = document.getElementById('topAccessoriesTotal');
@@ -507,7 +499,7 @@ function buildPS2WhatsAppMessage(formData, isCOD, orderID) {
   const select=document.getElementById('gameDrive');
   const option=select.options[select.selectedIndex];
   if(Number(option.value)>0)items.push({name:option.text.replace(/[🔥🟡]/gu,'').replace(/\s*•\s*₹[\d,]+/g,'').trim(),quantity:1,unitPrice:Number(option.value)});
-  const warrantyLabel=(warranty===12?'1 Year':warranty+' Month'+(warranty>1?'s':''));
+  const warrantyLabel=(warranty===0?'7 Days':warranty>=12?(warranty/12)+' Year'+(warranty>12?'s':''):warranty+' Months');
   const productTotal=items.reduce((sum,item)=>sum+item.quantity*item.unitPrice,0)+warrantyPrice;
   const courierSelect=document.getElementById('courierService');
   const courier=isCOD?599:Number(courierSelect?.value||299);
