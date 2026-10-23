@@ -34,7 +34,7 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 399,
     "weight": 0,
     "size": "",
-    "image": "assets/charger.png"
+    "image": "images/assets/charger.png"
   },
   {
     "name": "AL02 RGB Mobile Phone Cooler",
@@ -47,7 +47,7 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 99,
     "weight": 0,
     "size": "",
-    "image": "assets/av-standard.jpeg"
+    "image": "images/assets/av-standard.jpeg"
   },
   {
     "name": "AV Component Connector",
@@ -222,14 +222,14 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 350,
     "weight": 0,
     "size": "",
-    "image": "assets/panasonic-2.png"
+    "image": "images/assets/panasonic-2.png"
   },
   {
     "name": "Panasonic AAA Rechargeable Cells (4 Pack)",
     "price": 700,
     "weight": 0,
     "size": "",
-    "image": "assets/panasonic-4.png"
+    "image": "images/assets/panasonic-4.png"
   },
   {
     "name": "Plain Black Shock-Proof HDD Carry Cover",
@@ -302,14 +302,14 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 375,
     "weight": 0,
     "size": "",
-    "image": "assets/wired-black.png"
+    "image": "images/assets/wired-black.png"
   },
   {
     "name": "PS2 Wireless Controller",
     "price": 525,
     "weight": 0,
     "size": "",
-    "image": "assets/wireless.jpeg"
+    "image": "images/assets/wireless.jpeg"
   },
   {
     "name": "PS3 Controller (Replica)",
@@ -424,7 +424,7 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 550,
     "weight": 0,
     "size": "",
-    "image": "assets/simpex-4.png"
+    "image": "images/assets/simpex-4.png"
   },
   {
     "name": "SL-14 Rechargeable Battery Mobile Phone Cooler",
@@ -533,21 +533,21 @@ window.GPZ_PRODUCT_CATALOG = [
     "price": 385,
     "weight": 0,
     "size": "",
-    "image": "assets/wired-white.png"
+    "image": "images/assets/wired-white.png"
   },
   {
     "name": "PS2 Wired Gamepad Crystal Red",
     "price": 385,
     "weight": 0,
     "size": "",
-    "image": "assets/wired-red.png"
+    "image": "images/assets/wired-red.png"
   },
   {
     "name": "PS2 Wired Gamepad Crystal Blue",
     "price": 385,
     "weight": 0,
     "size": "",
-    "image": "assets/wired-blue.png"
+    "image": "images/assets/wired-blue.png"
   },
   {
     "name": "HDMI Best 1.5m Cable",

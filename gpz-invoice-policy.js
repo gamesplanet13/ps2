@@ -3,7 +3,7 @@
   const POLICY='No return, replacement or refund. Please inspect the product before purchase. Confirm warranty before purchase. Classic and Chinese items generally carry no warranty.';
   const $=id=>document.getElementById(id);
   function gstOn(){const v=($('gstMode')?.value||$('type')?.value||'').toLowerCase();return v==='yes'||v==='gst'}
-  function qr(){return gstOn()?'https://gamesplanet13.github.io/arcade-accessories-/GSTcurrentQR.png':'https://gamesplanet13.github.io/arcade-accessories-/NonGSTcurrentQR.jpg'}
+  function qr(){return gstOn()?'https://gamesplanet13.github.io/arcade-accessories-/images/GSTcurrentQR.png':'https://gamesplanet13.github.io/arcade-accessories-/images/NonGSTcurrentQR.jpg'}
   function customerNumber(){return (($('mobile')?.value||'').replace(/\D/g,'').slice(-10))}
   function enhance(){
     const root=$('invoiceContent')||$('preview'); if(!root)return;
