@@ -10,10 +10,10 @@ let extra={};const money=n=>'₹'+n.toLocaleString('en-IN'),esc=s=>String(s).rep
 function val(id){return document.getElementById(id).value}
 function makeItem(name,price,quantity,meta,service=false){return {name,product:name,quantity,unitPrice:price,lineTotal:price*quantity,unitWeight:meta.weight,lineWeight:meta.weight*quantity,dimensions:meta.dimensions,image:meta.image||'',service}}
 function completeSummary(){const storage=val('storage'),pack=val('pack'),count=Math.max(1,Math.min(99,Math.floor(Number(val('controllers')))||1)),d=PACKS[storage],w=Number(val('warranty')),wprice=({0:0,3:400,6:600,12:1000,24:1700})[w]||0;
-const price=8500+599+369+100+99+375*count+d[pack],weight=900+340+25+70+250*count+d.weight;
+const price=8500+599+369+100+99+375*count+d[pack],weight=900+340+25+70+250*count+d.weight+650;
 const driveLabel=storage==='none'?'No Game Drive':storage+' — '+(pack==='top'?'Top Games':'Optional Games');
 const label='PS2 Complete Setup — '+driveLabel+' — '+count+' Wired Controller'+(count>1?'s':'');
-const base=makeItem(label,price,1,{weight,dimensions:[35,35,10],image:'Ps2slim7x.jpg'});base.components=completeComponents();base.includedControllers=count;base.variant='PS2 Slim Black • Adapter + Cable • 8MB Card with Software Included • AV Cable • '+count+' Wired Controller'+(count>1?'s':'')+' • '+driveLabel;
+const base=makeItem(label,price,1,{weight,dimensions:[40,30,16],image:'Ps2slim7x.jpg'});base.components=completeComponents();base.includedControllers=count;base.variant='PS2 Slim Black • Adapter + Cable • 8MB Card with Software Included • AV Cable • '+count+' Wired Controller'+(count>1?'s':'')+' • '+driveLabel;
 const items=[base,makeItem('PS2 Console Warranty — '+(w===0?'7 Days':w>=12?(w/12)+' Year'+(w>12?'s':''):w+' Months'),wprice,1,{weight:0,dimensions:[]},true)];
 if(document.getElementById('multitap').checked)items.push(makeItem('PS2 USB Multi Tap',USB_MULTITAP_PRICE,1,USB_MULTITAP_META));
 for(const a of ADDONS){const q=extra[a.i]||0;if(q)items.push(makeItem(a.name,a.price,q,META[a.i]));}return {source:'cart',items,productTotal:items.reduce((s,i)=>s+i.lineTotal,0),totalWeight:items.reduce((s,i)=>s+i.lineWeight,0),totalQuantity:items.filter(i=>!i.service).reduce((s,i)=>s+i.quantity,0)}}
