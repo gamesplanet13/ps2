@@ -5,7 +5,7 @@ const names=['Power Adapter with Cable','AV Cable Standard','HDMI Converter','HD
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function item(name,price,qty,info,service=false){return {name,product:name,variant:'',quantity:qty,unitPrice:price,baseUnitPrice:price,lineTotal:price*qty,unitWeight:info.weight,lineWeight:info.weight*qty,dimensions:info.dimensions,image:info.image||'',service};}
 window.ps2Summary=function(){
- const items=[item('PS2 Slim Black Console — Console Only',8500,1,{weight:900,dimensions:[23,15.2,3],image:'Ps2slim7x.jpg'})];
+ const items=[item('PS2 Slim Black Console — Console Only',8500,1,{weight:1500,dimensions:[40,30,16],image:'Ps2slim7x.jpg'})];
  quantities.forEach((q,i)=>{if(q>0)items.push(item(names[i],prices[i],q,meta[i]));});
  const select=document.getElementById('gameDrive'),option=select.options[select.selectedIndex];
  if(Number(option.value)>0){const text=option.text.replace(/[🔥🟡]/gu,'').replace(/\s*•\s*₹[\d,]+/g,'').trim();let info=/500GB/.test(text)?{weight:250,dimensions:[13,9,3]}:/256GB/.test(text)?{weight:80,dimensions:[13,9,2]}:{weight:10,dimensions:[5,3,2]};info.image='https://gamesplanet13.github.io/arcade-accessories-/images/jpeg/'+(/SSD|HDD/.test(text)?'usbhdd-1.jpeg':'sandiscultra-1.jpeg');items.push(item(text,Number(option.value),1,info));}
