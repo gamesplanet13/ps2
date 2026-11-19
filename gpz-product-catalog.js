@@ -348,12 +348,6 @@ window.GPZ_PRODUCT_CATALOG = [
     "size": ""
   },
   {
-    "name": "Push Button",
-    "price": 35,
-    "weight": 0,
-    "size": ""
-  },
-  {
     "name": "Push Button (Imported)",
     "price": 46,
     "weight": 0,
